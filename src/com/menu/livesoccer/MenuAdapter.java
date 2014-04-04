@@ -3,9 +3,6 @@
  */
 package com.menu.livesoccer;
 
-import java.text.DateFormat;
-import java.util.List;
-
 import com.example.livesoccer.R;
 
 import android.content.Context;
@@ -30,8 +27,7 @@ public class MenuAdapter extends BaseAdapter{
 	 * @param context TODO
 	 */
 	public MenuAdapter(Context context) {
-		_context = context ;
-		//dataMenu = data ;
+
 		this.inflater =
 				LayoutInflater.from(context);
 	}
@@ -87,10 +83,6 @@ public class MenuAdapter extends BaseAdapter{
 	
 	
 	
-	/**
-	 * _context <code>Context</code> 
-	 */
-	private Context _context;
 
 	/**
 	 * Liste des <code>String</code> pour menu de l'acueil 

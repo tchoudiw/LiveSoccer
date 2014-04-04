@@ -1,12 +1,15 @@
 package com.menu.livesoccer;
 
-
-import java.util.ArrayList;
-
+import historiqueMatch.HistoriqueActivity;
+import mesEquipesSuivies.EquipeSuivieActivity;
+import mesMatchAvenir.MatchAvenirActivity;
+import mesMatchEncours.MatchEncoursActivity;
+import choixMatch.ChoixCompetitionActivity;
 import com.example.livesoccer.R;
-
+import configurationSon.ConfigurationActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,33 +23,53 @@ public class MemuActivity extends Activity {
 	{
 		@Override
 		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-//			switch(position)
-//			{
-//			case 30:
-//			{
-//				Intent i = new Intent(MainActivityCustom.this, MainActivityArray.class);
-//				startActivity(i);
-//				break;
-//			}
-//			case 31:
-//			{
-//				Intent i = new Intent(MainActivityCustom.this, MainActivityHashMap.class);
-//				startActivity(i);
-//				break;
-//			}
-//			case 32:
-//			{
-//				Intent i = new Intent(MainActivityCustom.this, MainActivityHashMapBinder.class);
-//				startActivity(i);
-//				break;
-//			}
-//			default:
+			switch(position)
+			{
+			case 0:
+			{
+				Intent i = new Intent(MemuActivity.this, ChoixCompetitionActivity.class);
+				startActivity(i);
+				break;
+			}
+			case 1:
+			{
+				Intent i = new Intent(MemuActivity.this, MatchEncoursActivity.class);
+				startActivity(i);
+				break;
+			}
+			case 2:
+			{
+				Intent i = new Intent(MemuActivity.this, HistoriqueActivity.class);
+				startActivity(i);
+				break;
+			}
+			case 3:
+			{
+				Intent i = new Intent(MemuActivity.this, MatchAvenirActivity.class);
+				startActivity(i);
+				break;
+			}
+			case 4:
+			{
+				Intent i = new Intent(MemuActivity.this, EquipeSuivieActivity.class);
+				startActivity(i);
+				break;
+			}
+			case 5:
+			{
+				Intent i = new Intent(MemuActivity.this, ConfigurationActivity.class);
+				startActivity(i);
+				break;
+			}
+			
+			
+			default:
 				Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 					
 			}
 		}
 	
-	
+	}	
 	/**
 	 * mainList <code>ListView</code> 
 	 */
@@ -65,14 +88,6 @@ public class MemuActivity extends Activity {
 //		
 //		Random r = new Random();
 //		
-		int dataMenu[]  = {
-				R.string.choix_match,
-				R.string.live_match,
-				R.string.historiques_match,
-				R.string.futurs_match,
-				R.string.mes_equipes,
-				R.string.configuration_sons
-			};
 
 		
 		mainAdapter = new MenuAdapter(getApplicationContext() );
@@ -94,3 +109,4 @@ public class MemuActivity extends Activity {
 	
 
 }
+	
