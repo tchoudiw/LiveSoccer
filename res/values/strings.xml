@@ -4,5 +4,12 @@
     <string name="app_name">LiveSoccer</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="choix_match">Choisir un match</string>
+    <string name="live_match">Mes matchs en cours</string>
+    <string name="historiques_match">Historique de mes matchs</string>
+    <string name="futurs_match">Mes matchs à venir</string>
+    <string name="mes_equipes">Mes equipes suivies</string>
+    <string name="configuration_sons">Configuration de sons</string>
+                            
 
 </resources>
