@@ -4,7 +4,7 @@ import historiqueMatch.HistoriqueActivity;
 import mesEquipesSuivies.EquipeSuivieActivity;
 import mesMatchAvenir.MatchAvenirActivity;
 import mesMatchEncours.MatchEncoursActivity;
-import choixMatch.ChoixCompetitionActivity;
+import choixMatch.ChoixLeagueActivity;
 import com.example.livesoccer.R;
 import configurationSon.ConfigurationActivity;
 import android.os.Bundle;
@@ -12,13 +12,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MemuActivity extends Activity {
 
+	/**
+	 * inner CLass to handle click event on the listView 
+	 * @author Team Live Soccer
+	 *
+	 */
 	private class MainListOnItemClick implements OnItemClickListener
 	{
 		@Override
@@ -27,7 +31,7 @@ public class MemuActivity extends Activity {
 			{
 			case 0:
 			{
-				Intent i = new Intent(MemuActivity.this, ChoixCompetitionActivity.class);
+				Intent i = new Intent(MemuActivity.this, ChoixLeagueActivity.class);
 				startActivity(i);
 				break;
 			}
@@ -64,12 +68,32 @@ public class MemuActivity extends Activity {
 			
 			
 			default:
-				Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 					
 			}
 		}
 	
 	}	
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		mainAdapter = new MenuAdapter(getApplicationContext() );
+		mainList = (ListView)findViewById(R.id.mainList);
+		mainList.setAdapter(mainAdapter);
+		mainList.setOnItemClickListener(new MainListOnItemClick());
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
 	/**
 	 * mainList <code>ListView</code> 
 	 */
@@ -78,35 +102,6 @@ public class MemuActivity extends Activity {
 	 * Menu adapter 
 	 */
 	private MenuAdapter mainAdapter;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
-//		GregorianCalendar gc = new GregorianCalendar();
-//		
-//		Random r = new Random();
-//		
-
-		
-		mainAdapter = new MenuAdapter(getApplicationContext() );
-		
-		mainList = (ListView)findViewById(R.id.mainList);
-		mainList.setAdapter(mainAdapter);
-		mainList.setOnItemClickListener(new MainListOnItemClick());
-	}
-	
-	
-	
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	
 
 }
 	

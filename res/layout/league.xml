@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menuChoix"
+    android:layout_width="match_parent"
+    android:layout_height="80dp" >
+    
+      <TextView
+          android:id="@+id/overrideText"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:layout_alignBottom="@+id/menuInner"
+          android:gravity="center_vertical"
+          android:text="Choisir une Leaugue"
+          android:textSize="30sp"
+          android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/menuInner"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true" >
+
+        <ImageView
+            android:id="@+id/menuIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="22dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/texteMemu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="choix league"
+            android:textColor="#AAA"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

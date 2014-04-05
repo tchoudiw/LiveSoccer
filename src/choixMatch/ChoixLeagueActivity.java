@@ -13,7 +13,7 @@ import android.view.Menu;
  * @author team Live Soccer
  *
  */
-public class ChoixCompetitionActivity extends Activity {
+public class ChoixLeagueActivity extends Activity {
 
 
 
@@ -22,7 +22,7 @@ public class ChoixCompetitionActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_mainleague);
 	}
 
 	@Override

@@ -22,6 +22,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity
+            android:name="choixMatch.ChoixLeagueActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="configurationSon.ConfigurationActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="historiqueMatch.HistoriqueActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="mesEquipesSuivies.EquipeSuivieActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="mesMatchAvenir.MatchAvenirActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="mesMatchEncours.MatchEncoursActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
