@@ -23,25 +23,35 @@ public final class R {
     public static final class drawable {
         public static final int choisir_un_match=0x7f020000;
         public static final int configuration_son=0x7f020001;
-        public static final int favoris=0x7f020002;
-        public static final int historiques_des_matchs=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int livesoccer=0x7f020005;
-        public static final int matchs_a_venir=0x7f020006;
-        public static final int matchs_en_cours=0x7f020007;
+        public static final int england=0x7f020002;
+        public static final int favoris=0x7f020003;
+        public static final int france=0x7f020004;
+        public static final int germany=0x7f020005;
+        public static final int historiques_des_matchs=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int italy=0x7f020008;
+        public static final int livesoccer=0x7f020009;
+        public static final int matchs_a_venir=0x7f02000a;
+        public static final int matchs_en_cours=0x7f02000b;
+        public static final int scottish=0x7f02000c;
+        public static final int spain=0x7f02000d;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080000;
         public static final int LinearLayout2=0x7f080002;
-        public static final int Linearinner=0x7f080004;
-        public static final int action_settings=0x7f08000a;
+        public static final int action_settings=0x7f08000e;
+        public static final int leagueChoix=0x7f080005;
+        public static final int leagueIcon=0x7f080009;
+        public static final int leagueInner=0x7f080008;
+        public static final int leagueList=0x7f080004;
         public static final int mainList=0x7f080001;
-        public static final int menuChoix=0x7f080005;
-        public static final int menuIcon=0x7f080008;
+        public static final int menuChoix=0x7f08000b;
+        public static final int menuIcon=0x7f08000c;
         public static final int menuInner=0x7f080007;
         public static final int overrideText=0x7f080006;
         public static final int textHead=0x7f080003;
-        public static final int texteMemu=0x7f080009;
+        public static final int texteLeague=0x7f08000a;
+        public static final int texteMemu=0x7f08000d;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -58,11 +68,17 @@ public final class R {
         public static final int choix_league=0x7f050009;
         public static final int choix_match=0x7f050003;
         public static final int configuration_sons=0x7f050008;
+        public static final int england=0x7f05000c;
+        public static final int french=0x7f05000b;
         public static final int futurs_match=0x7f050006;
+        public static final int germany=0x7f05000d;
         public static final int hello_world=0x7f050002;
         public static final int historiques_match=0x7f050005;
+        public static final int italy=0x7f05000e;
         public static final int live_match=0x7f050004;
         public static final int mes_equipes=0x7f050007;
+        public static final int scottish=0x7f05000a;
+        public static final int spain=0x7f05000f;
     }
     public static final class style {
         /** 

@@ -32,11 +32,7 @@ public class MenuAdapter extends BaseAdapter{
 				LayoutInflater.from(context);
 	}
 	
-	
-	public class MenuData{
-		
-		
-	}
+
 	
 	@Override
 	public int getCount() {
