@@ -46,6 +46,16 @@
             android:name="mesMatchEncours.MatchEncoursActivity"
             android:label="@string/app_name" >
         </activity>
+         <activity
+            android:name="choixMatch.ScottishLeagueActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="choixMatch.ScottishEquipeActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
+         ScottishEquipeActivity
     </application>
 
 </manifest>

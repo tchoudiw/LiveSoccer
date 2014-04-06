@@ -1,7 +1,5 @@
-/**
- * 
- */
 package choixMatch;
+
 import com.example.livesoccer.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,31 +12,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 /**
+ * Class qui gère l'onglet activité des équipes 
  * @author team Live Soccer
  *
  */
-public class ChoixLeagueActivity extends Activity {
+public class ScottishEquipeActivity extends Activity{
 
-
-
-//TODO Choix competition Activity 
-	/**
-	 * inner CLass to handle click event on the listView 
-	 * @author Team Live Soccer
-	 *
-	 */
 	private class MainListOnItemClick implements OnItemClickListener{
 		@Override
 		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 			switch(position)
 			{
 			//TODO Leaugue 1.1
-				case 0:
-				{
-					Intent i = new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
-					startActivity(i);
-					break;
-				}
+//				case 0:
+//				{
+//					Intent i = new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
+//					startActivity(i);
+//					break;
+//				}
 				
 				default:
 					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
@@ -52,9 +43,9 @@ public class ChoixLeagueActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_mainleague);
-		mainAdapter = new ChoixAdapter(getApplicationContext() );
-		mainList = (ListView)findViewById(R.id.leagueList);
+		setContentView(R.layout.main_league_onglet);
+		mainAdapter = new ScottishEquipeAdapteur(null );
+		mainList = (ListView)findViewById(R.id.listequipe);
 		mainList.setAdapter(mainAdapter);
 		mainList.setOnItemClickListener(new MainListOnItemClick());
 	}
@@ -74,11 +65,7 @@ public class ChoixLeagueActivity extends Activity {
 	/**
 	 * Menu adapter 
 	 */
-	private ChoixAdapter mainAdapter;
+	private ScottishEquipeAdapteur mainAdapter;
+
 
 }
-	
-
-
-
-

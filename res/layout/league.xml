@@ -22,7 +22,7 @@
 
         <ImageView
             android:id="@+id/leagueIcon"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
