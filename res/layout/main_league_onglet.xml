@@ -52,23 +52,12 @@
 					android:layout_width="fill_parent"
 					android:layout_height="fill_parent"
 					android:id="@+id/Onglet2">
-					<TextView
-						android:text="Ceci est un texte dans l’onglet N°2"
-						android:id="@+id/TextViewOnglet2"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-					</TextView>
-					<ImageView
-						android:id="@+id/ImageView01"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:src="@drawable/livesoccer">
-					</ImageView>
+					<include layout="@layout/entete_liste_classement" />
 					 <ListView
-					     android:id="@+id/classement"
+					     android:id="@+id/listclassement"
 					     android:layout_width="wrap_content"
 					     android:divider="#FFCC00"
-    					 android:dividerHeight="4px"
+    					 android:dividerHeight="1px"
 					     android:layout_height="fill_parent" >
 
 				    </ListView>	

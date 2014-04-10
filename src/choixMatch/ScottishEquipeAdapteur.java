@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 public class ScottishEquipeAdapteur extends BaseAdapter{
 
-	private LayoutInflater inflater;
 	
 	/**
 	 * @param listEquipe
@@ -51,7 +50,7 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 		
 		final DataEquipe dataEquipe = listEquipe.get(position);
 		TextView textEquipe = (TextView)view.findViewById(R.id.equipe);
-		textEquipe.setText(dataEquipe.getTeamName());
+		textEquipe.setText(dataEquipe.getNomEquipe());
 		
 		CheckBox check = (CheckBox)view.findViewById(R.id.checkEquipe);
 
@@ -88,7 +87,7 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 	            @Override
 	            public void onClick(View view) {
 	            	//TODO redirect to equipe page 
-	                Toast.makeText(parent.getContext(), "doit ouvrir la page : " + dataEquipe.getTeamName(), Toast.LENGTH_SHORT).show();
+	                Toast.makeText(parent.getContext(), "doit ouvrir la page : " + dataEquipe.getNomEquipe(), Toast.LENGTH_SHORT).show();
 	            }
 	        });
 
