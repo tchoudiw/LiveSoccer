@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/scottish_header" />
+  
+    <TabHost
+		android:id="@+id/TabHost01"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+			<!-- TabWidget qui sert à afficher les onglets -->
+				<TabWidget android:id="@android:id/tabs"
+					android:layout_width="match_parent"
+					android:gravity="center_vertical"
+					android:textColor="#AAAA00"
+        			android:textSize="20sp"
+					android:layout_height="wrap_content">
+				</TabWidget>
+			<!-- contenu de nos onglets. -->
+			<FrameLayout
+				android:id="@android:id/tabcontent"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+			<!-- Contenu de l’onglet N°1 -->
+
+				<LinearLayout
+				    android:id="@+id/Onglet1"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:orientation="vertical" >
+
+					<include layout="@layout/entete_listequipe" />
+
+					 <ListView
+					     android:id="@+id/listequipe"
+					     android:layout_width="match_parent"
+					     android:divider="#CCCC00"
+    					 android:dividerHeight="3px"
+					     android:layout_height="wrap_content" >
+
+				    </ListView>	
+				</LinearLayout>
+				<!-- Contenu de l’onglet N°2 -->
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:id="@+id/Onglet2">
+					<include layout="@layout/entete_liste_classement" />
+					 <ListView
+					     android:id="@+id/listclassement"
+					     android:layout_width="wrap_content"
+					     android:divider="#FFCC00"
+    					 android:dividerHeight="1px"
+					     android:layout_height="fill_parent" >
+
+				    </ListView>	
+					
+					
+				</LinearLayout>
+				<!-- Contenu de l’onglet N°3 -->
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:id="@+id/Onglet3">
+					<TextView
+						android:text="Ceci est un texte dans l’onglet N°3"
+						android:id="@+id/TextViewOnglet3"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+					</TextView>
+					 <ListView
+					     android:id="@+id/journee"
+					     android:layout_width="wrap_content"
+					     android:divider="#FFCC00"
+    					 android:dividerHeight="4px"
+					     android:layout_height="fill_parent" >
+
+				    </ListView>	
+				</LinearLayout>
+			</FrameLayout>
+		</LinearLayout>
+	</TabHost>	    
+</LinearLayout>
