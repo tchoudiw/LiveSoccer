@@ -18,6 +18,7 @@
     <string name="england">English League Championship</string>
     <string name="germany">Bundesliga</string>
     <string name="italy">Serie A</string>
-    <string name="spain">La Liga</string>                
+    <string name="spain">La Liga</string>
+     <string name="france2">Ligue 2</string>                
 
 </resources>
