@@ -33,12 +33,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Equipe" 
-            android:layout_marginRight="120dp"/>
+            android:layout_marginRight="80dp"/>
         <TextView
 	        android:id="@+id/score"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_marginRight="100dp"
 	        android:text="Score" />
+         <TextView
+	        android:id="@+id/paris"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Parrier" />
          
     </LinearLayout>
     <ImageView
