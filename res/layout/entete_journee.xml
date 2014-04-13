@@ -14,15 +14,16 @@
             android:id="@+id/journeej"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Journee" 
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="10dp"
-            />
+            android:layout_marginLeft="120dp"
+            android:text="Journee"
+            android:textStyle="bold" />
+
         <TextView
-	        android:id="@+id/etatj"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:text="etat" />
+            android:id="@+id/etatj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="etat"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -30,30 +31,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
+
          <TextView
-            android:id="@+id/equipej"
+             android:id="@+id/equipej"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="90dp"
+             android:text="Equipe"
+             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/scorej"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Equipe" 
-            android:layout_marginRight="90dp"/>
-        <TextView
-	        android:id="@+id/scorej"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginRight="20dp"
-	        android:text="Score" />
+            android:layout_marginRight="20dp"
+            android:text="Score"
+            android:textStyle="bold" />
+
          <TextView
-	        android:id="@+id/parisj"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Parrier" />
+             android:id="@+id/parisj"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Parrier"
+             android:textStyle="bold" />
          
     </LinearLayout>
+
     <ImageView
-		    android:id="@+id/barrej"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:src="@drawable/barre"  
-		    />
+        android:id="@+id/barrej"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/barre"
+        android:visibility="gone" />
 
 </LinearLayout>

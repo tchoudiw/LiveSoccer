@@ -122,7 +122,7 @@ public final class R {
         public static final int choix_match=0x7f050003;
         public static final int configuration_sons=0x7f050008;
         public static final int england=0x7f05000c;
-        public static final int equipe=0x7f050011;
+        public static final int equipe=0x7f050012;
         public static final int french=0x7f05000b;
         public static final int futurs_match=0x7f050006;
         public static final int germany=0x7f05000d;
@@ -131,8 +131,9 @@ public final class R {
         public static final int italy=0x7f05000e;
         public static final int live_match=0x7f050004;
         public static final int mes_equipes=0x7f050007;
-        public static final int paris=0x7f050013;
-        public static final int score=0x7f050012;
+        public static final int nsuivie=0x7f050011;
+        public static final int paris=0x7f050014;
+        public static final int score=0x7f050013;
         public static final int scottish=0x7f05000a;
         public static final int spain=0x7f05000f;
         public static final int suivie=0x7f050010;

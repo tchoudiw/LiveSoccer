@@ -19,7 +19,8 @@
     <string name="germany">Bundesliga</string>
     <string name="italy">Serie A</string>
     <string name="spain">La Liga</string>
-    <string name="suivie">Suivre</string>
+    <string name="suivie">suivre</string>
+     <string name="nsuivie">ne plus suivre</string>
     <string name="equipe">Equipe</string>
     <string name="score">Score</string>
     <string name="paris">Parier</string>
