@@ -41,7 +41,7 @@
 					     android:id="@+id/listequipe"
 					     android:layout_width="match_parent"
 					     android:divider="#CCCC00"
-    					 android:dividerHeight="3px"
+    					 android:dividerHeight="1px"
 					     android:layout_height="wrap_content" >
 
 				    </ListView>	
@@ -70,17 +70,12 @@
 					android:layout_width="fill_parent"
 					android:layout_height="fill_parent"
 					android:id="@+id/Onglet3">
-					<TextView
-						android:text="Ceci est un texte dans l’onglet N°3"
-						android:id="@+id/TextViewOnglet3"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-					</TextView>
+					
 					 <ListView
 					     android:id="@+id/journee"
-					     android:layout_width="wrap_content"
+					     android:layout_width="fill_parent"
 					     android:divider="#FFCC00"
-    					 android:dividerHeight="4px"
+    					 android:dividerHeight="2px"
 					     android:layout_height="fill_parent" >
 
 				    </ListView>	

@@ -20,6 +20,9 @@
     <string name="italy">Serie A</string>
     <string name="spain">La Liga</string>
     <string name="suivie">Suivre</string>
+    <string name="equipe">Equipe</string>
+    <string name="score">Score</string>
+    <string name="paris">Parier</string>
 
 
 </resources>

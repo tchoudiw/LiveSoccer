@@ -30,6 +30,10 @@ public class ScottishLeagueActivity extends Activity{
 	private DataEquipe  equipeData  ;
 	private ArrayList<DataEquipe> listEquipe ;
 	private ArrayList<DataEquipe> listClassement ;
+	private ArrayList<DataJournee> listJournee ;
+	
+
+	private JourneeAdaptateur mainAdapterj;
 
 
 //	private class MainListOnItemClick implements OnItemClickListener{
@@ -78,19 +82,33 @@ public class ScottishLeagueActivity extends Activity{
 			
 			setListEquipe(new ArrayList<DataEquipe>());
 			setListClassement(new ArrayList<DataEquipe>());
+			setListJournee(new ArrayList<DataJournee>()) ;
 			int point = 80 ;
 			for(int a = 0; a < 30; a++)
 			{			
 				
 				int random_int = r.nextInt(8);
 				String nomEquipe = "teamSottsh" + a ;
+				Date date = new Date();
+				String equipe1 = "equipe" + a ;
+				String equipe2 = equipe1 + a+1 ;
+				String score = "1";
 				DataEquipe data = new DataEquipe() ;
+				DataJournee dataj = new DataJournee() ;
 				data.setNomEquipe(nomEquipe);
 				data.setCote(random_int) ;
 				data.setRang(a) ;
 				data.setPoint(point) ;
+				dataj.setEquipe1(equipe1) ;
+				dataj.setEquipe2(equipe2) ;
+				dataj.setScore1(score);
+				dataj.setScore2(score);
+				dataj.setPeriode(date) ;
+				dataj.setNumJournee(a);
+				dataj.setEtat("etat");
 				listEquipe.add(data);
 				listClassement.add(data) ;
+				listJournee.add(dataj);
 				point-- ;
 				
 			}
@@ -100,9 +118,11 @@ public class ScottishLeagueActivity extends Activity{
 			//setContentView(R.layout.main_league_onglet);
 			mainAdapter = new  ScottishEquipeAdapteur(listEquipe);
 			mainAdapterc = new ScotishClassementAdapteur(listClassement);
+			mainAdapterj = new JourneeAdaptateur(listJournee) ;
+			
 			mainList1.setAdapter(mainAdapter);
 			mainList2.setAdapter(mainAdapterc);
-			mainList3.setAdapter(mainAdapter);
+			mainList3.setAdapter(mainAdapterj);
 //			mainList1.setOnItemClickListener(new MainListOnItemClick());
 //			mainList2.setOnItemClickListener(new MainListOnItemClick());
 //			mainList3.setOnItemClickListener(new MainListOnItemClick());
@@ -116,6 +136,9 @@ public class ScottishLeagueActivity extends Activity{
 		
 		public void setListClassement(ArrayList<DataEquipe> listClassement) {
 			this.listClassement = listClassement;
+		}
+		public void setListJournee(ArrayList<DataJournee> listJournee) {
+			this.listJournee = listJournee;
 		}
 	
 

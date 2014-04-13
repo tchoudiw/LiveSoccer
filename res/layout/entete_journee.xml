@@ -11,14 +11,16 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/journee"
-            android:layout_width="wrap_content"
+            android:id="@+id/journeej"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Journee" 
-            android:layout_marginRight="120dp"/>
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
+            />
         <TextView
-	        android:id="@+id/etat"
-	        android:layout_width="wrap_content"
+	        android:id="@+id/etatj"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="etat" />
 
@@ -33,22 +35,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Equipe" 
-            android:layout_marginRight="80dp"/>
+            android:layout_marginRight="90dp"/>
         <TextView
-	        android:id="@+id/score"
+	        android:id="@+id/scorej"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_marginRight="100dp"
+	        android:layout_marginRight="20dp"
 	        android:text="Score" />
          <TextView
-	        android:id="@+id/paris"
+	        android:id="@+id/parisj"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="Parrier" />
          
     </LinearLayout>
     <ImageView
-		    android:id="@+id/barre"
+		    android:id="@+id/barrej"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:src="@drawable/barre"  
