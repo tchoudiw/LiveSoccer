@@ -14,13 +14,14 @@ import android.widget.TextView;
 public class ChoixAdapter extends BaseAdapter{
 
 	private LayoutInflater inflater;
+	Context context ;
 	/**
 	 * Constructor 
 	 * @param context TODO
 	 */
-	public ChoixAdapter(Context context) {
-
-		this.inflater = LayoutInflater.from(context);
+	public ChoixAdapter(Context contexte) {
+		context = contexte ;
+		//this.inflater = LayoutInflater.from(context);
 	}
 	
 	
@@ -41,10 +42,10 @@ public class ChoixAdapter extends BaseAdapter{
 	}
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-//		if(view == null){
-//			LayoutInflater inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		if(view == null){
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.league, parent, false);
-//		}
+		}
 		
 		//else
 		//{

@@ -9,6 +9,7 @@ import java.util.Random;
 import com.example.livesoccer.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,31 +32,33 @@ public class ScottishLeagueActivity extends Activity{
 	private ArrayList<DataEquipe> listEquipe ;
 	private ArrayList<DataEquipe> listClassement ;
 	private ArrayList<DataJournee> listJournee ;
-	
+	 Intent itent; 
+	//= new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
+	//startActivity(i);
 
+	
 	private JourneeAdaptateur mainAdapterj;
 
 
-//	private class MainListOnItemClick implements OnItemClickListener{
-		//@Override
-//		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-//			switch(position)
-//			{
-//			//TODO Leaugue 1.1
-//				case 0:
-//				{
-//					Intent i = new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
-//					startActivity(i);
-//					break;
-//				}
-//				
-//				default:
-//					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-//					
-//			}
-//		}
-//	
-//	}	
+	private class MainListOnItemClick implements OnItemClickListener{
+		@Override
+		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+			switch(position)
+			{
+			//TODO Leaugue 1.1
+				case 0:
+				{
+				Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+					break;
+				}
+				
+				default:
+					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+					
+			}
+		}
+	
+	}	
 	
 
 	
@@ -116,14 +119,14 @@ public class ScottishLeagueActivity extends Activity{
 		
 			
 			//setContentView(R.layout.main_league_onglet);
-			mainAdapter = new  ScottishEquipeAdapteur(listEquipe);
+			mainAdapter = new  ScottishEquipeAdapteur(listEquipe, getApplicationContext());
 			mainAdapterc = new ScotishClassementAdapteur(listClassement);
 			mainAdapterj = new JourneeAdaptateur(listJournee) ;
 			
 			mainList1.setAdapter(mainAdapter);
 			mainList2.setAdapter(mainAdapterc);
 			mainList3.setAdapter(mainAdapterj);
-//			mainList1.setOnItemClickListener(new MainListOnItemClick());
+			//mainList1.setOnItemClickListener(new MainListOnItemClick());
 //			mainList2.setOnItemClickListener(new MainListOnItemClick());
 //			mainList3.setOnItemClickListener(new MainListOnItemClick());
 		
@@ -141,5 +144,8 @@ public class ScottishLeagueActivity extends Activity{
 			this.listJournee = listJournee;
 		}
 	
-
+		public  Intent getItent() {
+			itent = new Intent(ScottishLeagueActivity.this, ChoixLeagueActivity.class);
+			return itent;
+		}
 }

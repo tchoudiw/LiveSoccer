@@ -24,12 +24,13 @@ public class ScottishEquipeActivity extends Activity{
 			switch(position)
 			{
 			//TODO Leaugue 1.1
-//				case 0:
-//				{
-//					Intent i = new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
-//					startActivity(i);
-//					break;
-//				}
+				case 0:
+				{
+					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+					//Intent i = new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
+					//startActivity(i);
+					break;
+				}
 				
 				default:
 					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
@@ -44,7 +45,7 @@ public class ScottishEquipeActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_league_onglet);
-		mainAdapter = new ScottishEquipeAdapteur(null );
+		mainAdapter = new ScottishEquipeAdapteur(null, getApplicationContext() );
 		mainList = (ListView)findViewById(R.id.listequipe);
 		mainList.setAdapter(mainAdapter);
 		mainList.setOnItemClickListener(new MainListOnItemClick());

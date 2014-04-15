@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/scottish_header" />
+  
+    <TabHost
+		android:id="@+id/TabHost02"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+			<!-- TabWidget qui sert à afficher les onglets -->
+
+				<TabWidget
+				    android:id="@android:id/tabs"
+				    android:layout_width="match_parent"
+				    android:layout_height="33dp"
+				    android:gravity="center_vertical"
+				    android:textAlignment="center"
+				    android:textColor="#AAAA00"
+				    android:textSize="20sp" >
+
+				</TabWidget>
+			<!-- contenu de nos onglets. -->
+			<FrameLayout
+				android:id="@android:id/tabcontent"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+			<!-- Contenu de l’onglet N°1 -->
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:id="@+id/Onglet4">
+					
+					 <ListView
+					     android:id="@+id/descmatch"
+					     android:layout_width="fill_parent"
+					     android:divider="#FFCC00"
+    					 android:dividerHeight="2px"
+					     android:layout_height="fill_parent" >
+
+				    </ListView>	
+				</LinearLayout>
+				<!-- Contenu de l’onglet N°2 -->
+				<LinearLayout
+				    android:id="@+id/Onglet5"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:orientation="vertical" >
+
+					<include layout="@layout/entete_listequipe" />
+
+					 
+				</LinearLayout>
+			</FrameLayout>
+		</LinearLayout>
+	</TabHost>	    
+</LinearLayout>

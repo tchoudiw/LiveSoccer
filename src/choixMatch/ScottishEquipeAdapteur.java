@@ -3,9 +3,13 @@ package choixMatch;
 import java.util.ArrayList;
 
 import com.example.livesoccer.R;
+//import ScottishLeagueActivity ;
+import descriptionEquipe.EquipeActivity;
 import android.widget.Toast;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +17,20 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.app.Activity;
+import android.content.Intent;
 
 public class ScottishEquipeAdapteur extends BaseAdapter{
 
 	
 	/**
 	 * @param listEquipe
+	 * @param contexte TODO
 	 */
-	public ScottishEquipeAdapteur(ArrayList<DataEquipe> listEquipe) {
+	public ScottishEquipeAdapteur(ArrayList<DataEquipe> listEquipe, Context contexte) {
 		
 		this.listEquipe = listEquipe;
+		context = contexte ;
 	}
 	
 	
@@ -43,7 +51,7 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 	@Override
 	public View getView(int position, View view, final ViewGroup parent) {
 		 if (view == null) {
-	            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+			 LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            view = inflater.inflate(R.layout.equipe, parent, false);
 	        }
 
@@ -87,7 +95,12 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 	            @Override
 	            public void onClick(View view) {
 	            	//TODO redirect to equipe page 
-	                Toast.makeText(parent.getContext(), "doit ouvrir la page : " + dataEquipe.getNomEquipe(), Toast.LENGTH_SHORT).show();
+	                //leagueActivity.onCreate(dn);
+	            	Toast.makeText(parent.getContext(), "doit ouvrir la page : " + dataEquipe.getNomEquipe(), Toast.LENGTH_SHORT).show();
+	            	
+	            	//new Intent(ScottishEquipeActivity.this, EquipeActivity.class);
+	            	//leagueActivity.startActivity(it);
+	            	
 	            }
 	        });
 
@@ -106,5 +119,9 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
     public ArrayList<DataEquipe> listEquipe;
 	
     public  int count = 0 ;
+     Context context ;
+   ScottishLeagueActivity leagueActivity =  new ScottishLeagueActivity() ;
+   Intent it = leagueActivity.getIntent();
+   Bundle dn = new Bundle();
 
 }
