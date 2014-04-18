@@ -107,6 +107,34 @@ public class DataEquipe {
 		this.favori = favori;
 	}
 	/**
+	 * @return the ville
+	 */
+	public String getVille() {
+		return ville;
+	}
+
+
+	/**
+	 * @param ville the ville to set
+	 */
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	/**
+	 * @return the entraineur
+	 */
+	public String getEntraineur() {
+		return entraineur;
+	}
+
+
+	/**
+	 * @param entraineur the entraineur to set
+	 */
+	public void setEntraineur(String entraineur) {
+		this.entraineur = entraineur;
+	}
+	/**
 	 * <code>String</string> name of the team 
 	 */
 	private  String nomEquipe = "";
@@ -130,9 +158,23 @@ public class DataEquipe {
 	 */
 	private int favori = R.drawable.favoris;
 	/**
+	 * check box equipe 
+	 */
+	private int checkEquipe = R.id.checkEquipe;
+	final int favoriAndCheck []= {R.drawable.favoris,
+									R.id.checkEquipe };
+	/**
 	 * Date manegement 
 	 */
 	private Date date = null ;
+	/**
+	 * ville de l'équipe 
+	 */
+	private String ville ; 
+	/**
+	 * nom de l'entraineur 
+	 */
+	private String entraineur ;
 	
 	
 	

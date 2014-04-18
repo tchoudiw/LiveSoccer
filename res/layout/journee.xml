@@ -95,24 +95,36 @@
 		    </LinearLayout>
 		    
 		  </LinearLayout>
+		  	 <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical" >
 		 
-		     <TextView
-			        android:id="@+id/periodej"
-			        android:layout_width="fill_parent"
-			        android:layout_height="fill_parent"
-			        android:layout_marginLeft="15dp"
-			        android:text="periode" />
+			     <TextView
+				        android:id="@+id/periodej"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:layout_marginLeft="15dp"
+				        android:text="periode" />
+
+			     <Button
+			         android:id="@+id/suivrej"
+			         android:layout_width="wrap_content"
+			         android:layout_height="34dp"
+			         android:layout_marginLeft="10dp"
+			         android:layout_marginTop="20dp"
+			         android:focusable="false"
+			         android:focusableInTouchMode="false"
+			         android:onClick="myClickHandler"
+			         android:text="@string/suivie"
+			         android:textStyle="bold" />
+
+		     </LinearLayout>
 		         
 	</LinearLayout>
 
-	 <Button
-	     android:id="@+id/suivrej"
-	     android:layout_width="wrap_content"
-	     android:layout_height="32dp"
-	     android:layout_marginLeft="140dp"
-	     android:gravity="center_vertical|center_horizontal|left"
-	     android:onClick="setSuivieMatch"
-	     android:text="@string/suivie"
-	     android:textStyle="bold" />
+	 
+
+	
 	
 </LinearLayout>

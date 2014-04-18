@@ -18,10 +18,14 @@ public class DataJournee {
 	 */
 	public DataJournee() {
 		
+		
 	}
 	
 	
 	
+	/**
+	 * @return equipe1
+	 */
 	public String getEquipe1() {
 		return equipe1;
 	}
@@ -68,8 +72,6 @@ public class DataJournee {
 		return numJournee;
 	}
 
-
-
 	/**
 	 * @param numJournee the numJournee to set
 	 */
@@ -77,6 +79,7 @@ public class DataJournee {
 		this.numJournee = "Journee N° "+ numJournee;
 	}
 
+	
 
 
 	/**
@@ -114,11 +117,18 @@ public class DataJournee {
 							R.string.score, 
 							R.string.paris,
 							R.drawable.barre,
-							R.drawable.favoris};
+							R.drawable.favoris,
+							R.id.checkj1,
+							R.id.checkj2,
+							R.id.suivrej};
 	/**
 	 * Numéro de la journee 
 	 */
 	private String numJournee ;
+	
+	public  boolean buttonState = false ;
+	public boolean checkBoxState1 [] ;
+	public boolean checkBoxState2 [];
 	
 	
 }

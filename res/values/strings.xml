@@ -24,6 +24,10 @@
     <string name="equipe">Equipe</string>
     <string name="score">Score</string>
     <string name="paris">Parier</string>
+    
+     <string name="ville">Ville : </string>
+    <string name="entraineur">Entraineur : </string>
+    
 
 
 </resources>

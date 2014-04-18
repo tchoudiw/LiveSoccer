@@ -5,6 +5,8 @@ package choixMatch;
 
 import java.util.ArrayList;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +17,27 @@ import android.widget.Toast;
 
 import com.example.livesoccer.R;
 
+import descriptionEquipe.EquipeActivity;
+
 /**
  * @author team Live Soccer
  *
  */
 public class ScotishClassementAdapteur extends BaseAdapter{
 	
+	private Context context;
+
+
+
+
 	/**
 	 * @param listclasement
+	 * @param context TODO
 	 */
-	public ScotishClassementAdapteur (ArrayList<DataEquipe> listclasement) {
+	public ScotishClassementAdapteur (ArrayList<DataEquipe> listclasement, Context context) {
 		
 		this.listClassement = listclasement;
+		this.context = context ;
 	}
 	
 	
@@ -47,7 +58,7 @@ public class ScotishClassementAdapteur extends BaseAdapter{
 	@Override
 	public View getView(int position, View view, final ViewGroup parent) {
 		 if (view == null) {
-	            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+			 LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            view = inflater.inflate(R.layout.classement, parent, false);
 	        }
 
@@ -72,8 +83,12 @@ public class ScotishClassementAdapteur extends BaseAdapter{
 		 view.setOnClickListener(new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
-	            	//TODO redirect to equipe page 
-	                Toast.makeText(parent.getContext(), "doit ouvrir la page : " + dataEquipe.getNomEquipe(), Toast.LENGTH_SHORT).show();
+	            	//TODO renvoyer dans la variable globale le nom de l'équipe 
+	            	Intent intent= new Intent(context, EquipeActivity.class);
+	                
+	            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            	
+	            	context.startActivity(intent);
 	            }
 	        });
 

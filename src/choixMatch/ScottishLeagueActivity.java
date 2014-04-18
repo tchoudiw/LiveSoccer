@@ -9,12 +9,21 @@ import java.util.Random;
 import com.example.livesoccer.R;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TabHost.TabSpec;
@@ -23,6 +32,10 @@ public class ScottishLeagueActivity extends Activity{
 
 	
 	private TabHost monTabHost ;
+	//= getTabHost();
+	//TabHost tabHost = getTabHost();
+	TabHost.TabSpec spec;
+	Intent intent;
 	private ScottishEquipeAdapteur mainAdapter ;
 	private ScotishClassementAdapteur mainAdapterc ; 
 	private ListView mainList1 ;
@@ -32,7 +45,7 @@ public class ScottishLeagueActivity extends Activity{
 	private ArrayList<DataEquipe> listEquipe ;
 	private ArrayList<DataEquipe> listClassement ;
 	private ArrayList<DataJournee> listJournee ;
-	 Intent itent; 
+	Intent itent ;
 	//= new Intent(ChoixLeagueActivity.this, ScottishLeagueActivity.class);
 	//startActivity(i);
 
@@ -40,25 +53,27 @@ public class ScottishLeagueActivity extends Activity{
 	private JourneeAdaptateur mainAdapterj;
 
 
-	private class MainListOnItemClick implements OnItemClickListener{
-		@Override
-		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-			switch(position)
-			{
-			//TODO Leaugue 1.1
-				case 0:
-				{
-				Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-					break;
-				}
-				
-				default:
-					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-					
-			}
-		}
-	
-	}	
+//	private class MainListOnItemClick implements OnItemClickListener{
+//		@Override
+//		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+//			switch(position)
+//			{
+//			//TODO Leaugue 1.1
+//				case 0:
+//				{
+//				Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+//					break;
+//				}
+//				
+//				default:
+//					Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+//					
+//			}
+//			
+//			
+//		}
+//	
+//	}	
 	
 
 	
@@ -67,6 +82,7 @@ public class ScottishLeagueActivity extends Activity{
 		public void onCreate(Bundle savedInstanceState) { 
 			super.onCreate(savedInstanceState); 
 			setContentView(R.layout.main_league_onglet); 
+			
 			
 			// Récupération du TabHost 
 			monTabHost =(TabHost) findViewById(R.id.TabHost01); 
@@ -80,6 +96,13 @@ public class ScottishLeagueActivity extends Activity{
 			monTabHost.addTab(monTabHost.newTabSpec("onglet_3").setIndicator( "Journées").setContent(R.id.Onglet3)); 
 			
 			super.onCreate(savedInstanceState);
+//			Button bout = (Button)findViewById(R.id.suivrej);
+//			bout.setBackgroundColor(Color.argb(255, 50, 200, 0));
+//			bout.setTextColor(Color.argb(255, 255, 255, 255));
+//			 LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//	         View view = inflater.inflate(R.layout.journee, null);
+//	         Button bout = (Button)view.findViewById(R.id.suivrej);
+//	         bout.setBackgroundColor(Color.argb(255, 50, 200, 0));
 			
 			Random r = new Random();
 			
@@ -116,12 +139,15 @@ public class ScottishLeagueActivity extends Activity{
 				
 			}
 			
-		
+			
+			
+			
+			
 			
 			//setContentView(R.layout.main_league_onglet);
 			mainAdapter = new  ScottishEquipeAdapteur(listEquipe, getApplicationContext());
-			mainAdapterc = new ScotishClassementAdapteur(listClassement);
-			mainAdapterj = new JourneeAdaptateur(listJournee) ;
+			mainAdapterc = new ScotishClassementAdapteur(listClassement, getApplicationContext());
+			mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext()) ;
 			
 			mainList1.setAdapter(mainAdapter);
 			mainList2.setAdapter(mainAdapterc);
@@ -132,7 +158,43 @@ public class ScottishLeagueActivity extends Activity{
 		
 			
 		}
-
+		
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			// Inflate the menu; this adds items to the action bar if it is present.
+			getMenuInflater().inflate(R.menu.main, menu);
+			return true;
+		}
+		
+//		 public void myClickHandler(View v) 
+//		    {
+//		    	  
+//		    	//reset all the listView items background colours before we set the clicked one..
+////		    	ListView lvItems = getListView();
+////		    	for (int i=0; i<lvItems.getChildCount(); i++) 
+////		    	{
+////					lvItems.getChildAt(i).setBackgroundColor(Color.BLUE);		
+////				}
+////		    	
+//		    	
+//		    	//get the row the clicked button is in
+//		    	LinearLayout vwParentRow = (LinearLayout)v.getParent();
+//		 		
+//		    	TextView child = (TextView)vwParentRow.getChildAt(0);
+//		    	Button btnChild = (Button)vwParentRow.getChildAt(1);
+//		    	btnChild.setText(child.getText());
+//		    	btnChild.setText("I've been clicked!");
+//		    	
+//				int c = Color.CYAN;
+//				
+//				vwParentRow.setBackgroundColor(c); 
+//				vwParentRow.refreshDrawableState();
+//		    	
+//		    }
+//		
+		
+		
+		
 		public void setListEquipe(ArrayList<DataEquipe> listEquipe) {
 			this.listEquipe = listEquipe;
 		}
@@ -145,7 +207,7 @@ public class ScottishLeagueActivity extends Activity{
 		}
 	
 		public  Intent getItent() {
-			itent = new Intent(ScottishLeagueActivity.this, ChoixLeagueActivity.class);
+			itent = new Intent(this, ChoixLeagueActivity.class);
 			return itent;
 		}
 }

@@ -45,7 +45,7 @@ public class ScottishEquipeActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_league_onglet);
-		mainAdapter = new ScottishEquipeAdapteur(null, getApplicationContext() );
+		mainAdapter = new ScottishEquipeAdapteur(null, null );
 		mainList = (ListView)findViewById(R.id.listequipe);
 		mainList.setAdapter(mainAdapter);
 		mainList.setOnItemClickListener(new MainListOnItemClick());

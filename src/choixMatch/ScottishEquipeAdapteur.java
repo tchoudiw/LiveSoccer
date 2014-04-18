@@ -2,23 +2,20 @@ package choixMatch;
 
 import java.util.ArrayList;
 
-import com.example.livesoccer.R;
-//import ScottishLeagueActivity ;
-import descriptionEquipe.EquipeActivity;
-import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Intent;
+import android.widget.Toast;
+
+import com.example.livesoccer.R;
+
+import descriptionEquipe.EquipeActivity;
+//import ScottishLeagueActivity ;
 
 public class ScottishEquipeAdapteur extends BaseAdapter{
 
@@ -31,7 +28,11 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 		
 		this.listEquipe = listEquipe;
 		context = contexte ;
+		checkBoxState=new boolean[listEquipe.size()];
+		
 	}
+	
+	
 	
 	
 	@Override
@@ -49,44 +50,44 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 		return position;
 	}
 	@Override
-	public View getView(int position, View view, final ViewGroup parent) {
+	public View getView(final int position, View view, final ViewGroup parent) {
+
 		 if (view == null) {
-			 LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	            view = inflater.inflate(R.layout.equipe, parent, false);
-	        }
-
+			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			view = inflater.inflate(R.layout.equipe, parent, false);
+		 }
+			TextView equipe = (TextView)view.findViewById(R.id.equipe);
+			CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkEquipe);
+			TextView cote = (TextView)view.findViewById(R.id.cote);
+		 
+		final DataEquipe dataEquipe = listEquipe.get(position);	
+		equipe.setText(dataEquipe.getNomEquipe());
+		cote.setText(String.valueOf(dataEquipe.getCote()));
 		
-		final DataEquipe dataEquipe = listEquipe.get(position);
-		TextView textEquipe = (TextView)view.findViewById(R.id.equipe);
-		textEquipe.setText(dataEquipe.getNomEquipe());
-		
-		CheckBox check = (CheckBox)view.findViewById(R.id.checkEquipe);
-
-		TextView textCote = (TextView)view.findViewById(R.id.cote);
-		textCote.setText(String.valueOf(dataEquipe.getCote()));
+		checkBox.setChecked(checkBoxState[position]);
 		//view.findViewById(R.id.leagueInner).setVisibility(View.VISIBLE);
-		
-		
-//		if(position % 2 == 0)
-//			view.setBackgroundColor(Color.argb(255, 20, 20, 20));
-//		else
-//			view.setBackgroundColor(Color.BLACK);
-		
-		check.setTag(position) ;
+
+		view.setTag(Integer.valueOf(position));
+
 	
 		// rendre le check box sélectionable sur le listview 
-		check.setOnClickListener( new View.OnClickListener() {
+		checkBox.setTag(position) ;
+		checkBox.setOnClickListener( new View.OnClickListener() {
 	         @Override
 	         public void onClick(View view) {
 	        	 boolean checked = ((CheckBox) view).isChecked();
+	        	 int pos = (Integer)view.getTag();
 	    
 	        	 if (checked ){
 	        		// TODO add team  to following team list 
+	        		 checkBoxState[pos]=true;
 	        		 Toast.makeText(parent.getContext(), "doit agir sur la liste equipe suivie: " + TAG, Toast.LENGTH_SHORT).show();
 	        	 }
 		         else {
 		        	  // TODO remove team  to following team list 
+		        	 checkBoxState[pos]=false;
 		         }
+	        		 
 	         }     
 	     });
 		
@@ -94,18 +95,24 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 		 view.setOnClickListener(new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
-	            	//TODO redirect to equipe page 
-	                //leagueActivity.onCreate(dn);
-	            	Toast.makeText(parent.getContext(), "doit ouvrir la page : " + dataEquipe.getNomEquipe(), Toast.LENGTH_SHORT).show();
-	            	
-	            	//new Intent(ScottishEquipeActivity.this, EquipeActivity.class);
-	            	//leagueActivity.startActivity(it);
+		        	int pos = (Integer)view.getTag();
+
+	        		final DataEquipe dataEquipe = listEquipe.get(pos);	
+
+	            	//TODO renvoyer dans la variable globale le nom de l'équipe 
+	            	Intent intent= new Intent(context, EquipeActivity.class);
+	                
+	            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	        		intent.putExtra("equipe", dataEquipe.getNomEquipe());
+
+	            	context.startActivity(intent);
 	            	
 	            }
 	        });
 
 		    return view;
 	}
+	
 	
 	
 	
@@ -120,8 +127,9 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 	
     public  int count = 0 ;
      Context context ;
-   ScottishLeagueActivity leagueActivity =  new ScottishLeagueActivity() ;
-   Intent it = leagueActivity.getIntent();
-   Bundle dn = new Bundle();
+   //ScottishLeagueActivity leagueActivity =  new ScottishLeagueActivity() ;
+   Intent itent ;
+   
+   boolean[] checkBoxState;
 
 }

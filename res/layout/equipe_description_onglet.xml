@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <include layout="@layout/scottish_header" />
+    <include layout="@layout/entete_description_equipe" />
   
     <TabHost
 		android:id="@+id/TabHost02"
@@ -19,7 +19,7 @@
 				<TabWidget
 				    android:id="@android:id/tabs"
 				    android:layout_width="match_parent"
-				    android:layout_height="33dp"
+				    android:layout_height="wrap_content"
 				    android:gravity="center_vertical"
 				    android:textAlignment="center"
 				    android:textColor="#AAAA00"
@@ -41,9 +41,9 @@
 					 <ListView
 					     android:id="@+id/descmatch"
 					     android:layout_width="fill_parent"
+					     android:layout_height="fill_parent"
 					     android:divider="#FFCC00"
-    					 android:dividerHeight="2px"
-					     android:layout_height="fill_parent" >
+					     android:dividerHeight="2px" >
 
 				    </ListView>	
 				</LinearLayout>
@@ -54,7 +54,7 @@
 				    android:layout_height="wrap_content"
 				    android:orientation="vertical" >
 
-					<include layout="@layout/entete_listequipe" />
+					<include layout="@layout/description_equipe" />
 
 					 
 				</LinearLayout>
