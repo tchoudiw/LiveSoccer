@@ -120,11 +120,12 @@ public final class R {
         public static final int journee=0x7f03000a;
         public static final int journee_complete=0x7f03000b;
         public static final int league=0x7f03000c;
-        public static final int main_league_onglet=0x7f03000d;
-        public static final int menu=0x7f03000e;
-        public static final int scottish_equipe=0x7f03000f;
-        public static final int scottish_header=0x7f030010;
-        public static final int testongletlist=0x7f030011;
+        public static final int main=0x7f03000d;
+        public static final int main_league_onglet=0x7f03000e;
+        public static final int menu=0x7f03000f;
+        public static final int scottish_equipe=0x7f030010;
+        public static final int scottish_header=0x7f030011;
+        public static final int testongletlist=0x7f030012;
     }
     public static final class menu {
         public static final int main=0x7f070000;

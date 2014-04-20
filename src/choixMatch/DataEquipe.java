@@ -4,6 +4,8 @@
 package choixMatch;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.example.livesoccer.R;
 
@@ -19,6 +21,7 @@ public class DataEquipe {
 	 */
 	public DataEquipe() {
 		
+		initialiseUrl() ;
 	}
 	
 	
@@ -40,14 +43,14 @@ public class DataEquipe {
 	 * getter
 	 * @return <code>double</code> cote 
 	 */
-	public double getCote() {
+	public String getCote() {
 		return cote;
 	}
 	/**
 	 * setter
 	 * @param cote <code>double</code> 
 	 */
-	public void setCote(double cote) {
+	public void setCote(String cote) {
 		this.cote = cote;
 	}
 	/**
@@ -67,7 +70,7 @@ public class DataEquipe {
 	/**
 	 * @return the point
 	 */
-	public int getPoint() {
+	public String getPoint() {
 		return point;
 	}
 
@@ -75,13 +78,13 @@ public class DataEquipe {
 	/**
 	 * @param point the point to set
 	 */
-	public void setPoint(int point) {
+	public void setPoint(String point) {
 		this.point = point;
 	}
 	/**
 	 * @return the rang
 	 */
-	public int getRang() {
+	public String getRang() {
 		return rang;
 	}
 
@@ -89,7 +92,7 @@ public class DataEquipe {
 	/**
 	 * @param rang the rang to set
 	 */
-	public void setRang(int rang) {
+	public void setRang(String rang) {
 		this.rang = rang;
 	}
 	/**
@@ -134,6 +137,14 @@ public class DataEquipe {
 	public void setEntraineur(String entraineur) {
 		this.entraineur = entraineur;
 	}
+	
+	
+	private void initialiseUrl(){
+		final String allTeamUrl = "http://www.xmlsoccer.com/FootballDataDemo.asmx/" +
+				"GetAllTeams?ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR";
+		
+		urlContent.put("allTeam", allTeamUrl) ;
+	}
 	/**
 	 * <code>String</string> name of the team 
 	 */
@@ -142,17 +153,17 @@ public class DataEquipe {
 	/**
 	 * Cote of the team 
 	 */
-	private double cote = 0;
+	private String cote = "1";
 	
 	/**
 	 * Rank of the team 
 	 */
-	private int rang = 1;
+	private String rang = "1";
 	
 	/**
 	 * Score of the the team 
 	 */
-	private int point = 0;
+	private String point = "0";
 	/**
 	 * favorite icon 
 	 */
@@ -176,6 +187,7 @@ public class DataEquipe {
 	 */
 	private String entraineur ;
 	
+	Map<String, String > urlContent = new HashMap<String , String>();
 	
 	
 	
