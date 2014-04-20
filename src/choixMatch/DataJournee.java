@@ -21,49 +21,98 @@ public class DataJournee {
 		
 	}
 	
+	// http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndLeague?league=Scottish&ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&startDateString=2012-01-01&endDateString=2015-01-01
 	
+
+
+
+
+
 	
+
+
 	/**
-	 * @return equipe1
+	 * @return the equipe1
 	 */
 	public String getEquipe1() {
 		return equipe1;
 	}
+	/**
+	 * @param equipe1 the equipe1 to set
+	 */
 	public void setEquipe1(String equipe1) {
 		this.equipe1 = equipe1;
 	}
+
+	/**
+	 * @return the equipe2
+	 */
 	public String getEquipe2() {
 		return equipe2;
 	}
+
+	/**
+	 * @param equipe2 the equipe2 to set
+	 */
 	public void setEquipe2(String equipe2) {
 		this.equipe2 = equipe2;
 	}
+
+	/**
+	 * @return the score1
+	 */
 	public String getScore1() {
 		return score1;
 	}
+
+	/**
+	 * @param score1 the score1 to set
+	 */
 	public void setScore1(String score1) {
 		this.score1 = score1;
 	}
+
+	/**
+	 * @return the score2
+	 */
 	public String getScore2() {
 		return score2;
 	}
+
+	/**
+	 * @param score2 the score2 to set
+	 */
 	public void setScore2(String score2) {
 		this.score2 = score2;
 	}
+
+	/**
+	 * @return the etat
+	 */
 	public String getEtat() {
 		return etat;
 	}
+
+	/**
+	 * @param etat the etat to set
+	 */
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-	public Date getPeriode() {
+
+	/**
+	 * @return the periode
+	 */
+	public String getPeriode() {
 		return periode;
 	}
-	public void setPeriode(Date periode) {
-		this.periode = periode;
+
+	/**
+	 * @param date the periode to set
+	 */
+	public void setPeriode(String date) {
+		this.periode = date;
 	}
-
-
 
 	/**
 	 * @return the numJournee
@@ -75,12 +124,17 @@ public class DataJournee {
 	/**
 	 * @param numJournee the numJournee to set
 	 */
-	public void setNumJournee(int  numJournee) {
-		this.numJournee = "Journee N° "+ numJournee;
+	public void setNumJournee(String numJournee) {
+		this.numJournee = numJournee;
 	}
-
-	
-
+public String getJourneeUrl(){
+		
+		final String journee = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndLeague?&" +
+				"league=Scottish&ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&" +
+				"startDateString="+dateDebut + "&endDateString=" + dateFin ;
+		
+		return journee ;
+	}
 
 	/**
 	 * Equipe 1 
@@ -108,7 +162,7 @@ public class DataJournee {
 	 */
 
 
-	private Date periode ;
+	private String periode ;
 
 	/**
 	 * titre constant des entetes de journee
@@ -125,6 +179,9 @@ public class DataJournee {
 	 * Numéro de la journee 
 	 */
 	private String numJournee ;
+	
+	private final String dateDebut="2012-01-01";
+	private final String dateFin = "2015-01-01";
 	
 	public  boolean buttonState = false ;
 	public boolean checkBoxState1 [] ;

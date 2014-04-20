@@ -119,7 +119,7 @@ public class JourneeAdaptateur extends BaseAdapter {
 		icon2.setImageResource(dataJournee.intitulle[4]);
 		textScore1.setText(dataJournee.getScore1());
 		textScore2.setText(dataJournee.getScore2());
-		textPeriode.setText(df.format(dataJournee.getPeriode()));
+		textPeriode.setText(dataJournee.getPeriode());
 
 		// +dataJournee.getPeriode().compareTo(date) ;
 

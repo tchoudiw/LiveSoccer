@@ -101,8 +101,8 @@ public class EquipeActivity extends Activity{
 			dataj.setEquipe2(equipe2) ;
 			dataj.setScore1(score);
 			dataj.setScore2(score);
-			dataj.setPeriode(date) ;
-			dataj.setNumJournee(a);
+			dataj.setPeriode(date.toString()) ;
+			dataj.setNumJournee(String.valueOf(a));
 			dataj.setEtat("etat");
 			listJournee.add(dataj);
 			

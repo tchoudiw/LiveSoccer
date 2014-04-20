@@ -40,15 +40,22 @@ public class ScottishLeagueActivity extends Activity{
 	  // All static variables
     static final String URL = "http://api.androidhive.info/pizza/?format=xml";
     // XML node keys
-    static final String KEY_ITEM = "Team"; // parent node
-    static final String KEY_ID = "Team_Id";
-    static final String KEY_NAME = "Name";
-    static final String KEY_COST = "cost";
-    static final String KEY_DESC = "description";
+    static final String RACINE_TEAM = "Team"; // parent node
+    static final String TEAM_ID = "Team_Id";
+    static final String TEAM_NAME = "Name";
+	private static final String RACINE_MATCH = "Match";
+	private static final String EQUIPE_1 = "HomeTeam";
+	private static final String EQUIPE_2 = "AwayTeam";
+	private static final String SCORE_1 = "HomeGoals";
+	private static final String SCORE_2 = "AwayGoals";
+	private static final String DATE = "Date";
+   
 	
 	private JourneeAdaptateur mainAdapterj;
 	//private DataEquipe data = new DataEquipe() ;
 	private XMLParser parser;
+	private DataEquipe data;
+	private DataJournee dataj;
 
 	
 		@Override 
@@ -70,55 +77,24 @@ public class ScottishLeagueActivity extends Activity{
 			monTabHost.addTab(monTabHost.newTabSpec("onglet_3").setIndicator( "Journées").setContent(R.id.Onglet3)); 
 			
 			//super.onCreate(savedInstanceState);
-			DataEquipe dat = new DataEquipe() ;
+			data = new DataEquipe() ;
+			this.dataj = new DataJournee() ;
 			setListEquipe(new ArrayList<DataEquipe>());
 			setListClassement(new ArrayList<DataEquipe>());
 			setListJournee(new ArrayList<DataJournee>()) ;
 			parser = new XMLParser();
-		    String xml = parser.getXmlFromUrl(dat.getAllTeamUrl()); // getting XML
-		    Document doc = parser.getDomElement(xml); // getting DOM element
-		     
-		     NodeList nl = doc.getElementsByTagName(KEY_ITEM);
-	     
-	
-			for(int a = 0; a < nl.getLength(); a++)
-			{			
-				
-				Element elt = (Element) nl.item(a);
-				Date date = new Date();
-				String equipe1 = "equipe" + a ;
-				String equipe2 = equipe1 + a+1 ;
-				String score = "1";
-				DataEquipe data = new DataEquipe() ;
-				DataJournee dataj = new DataJournee() ;
-				
-				
-				data .setNomEquipe(parser.getValue(elt, KEY_NAME ));
-				data.setCote(parser.getValue(elt, KEY_ID) );
-				data.setiDTeam(parser.getValue(elt, KEY_ID) ); 
-				data.setRang(String.valueOf(a)) ;
-				//data.setPoint(parser.getValue(elt, KEY_COST)) ;
-				
-		
-				
-				
-				dataj.setEquipe1(equipe1) ;
-				dataj.setEquipe2(equipe2) ;
-				dataj.setScore1(score);
-				dataj.setScore2(score);
-				dataj.setPeriode(date) ;
-				dataj.setNumJournee(a);
-				dataj.setEtat("etat");
-				
-				 
-				
-				
-				listEquipe.add(data);
-				listClassement.add(data) ;
-				listJournee.add(dataj);
-
-				
-			}
+			String xmlString2 = parser.getXmlFromUrl(dataj.getJourneeUrl());
+			String xmlString1 = parser.getXmlFromUrl(data.getAllTeamUrl()); // getting XML
+		    
+		    
+		    Document doc1 = parser.getDomElement(xmlString1); // getting DOM element
+		    Document doc2 = parser.getDomElement(xmlString2);
+		   
+		    NodeList nl2 = doc2.getElementsByTagName(RACINE_MATCH);
+		    NodeList nl1 = doc1.getElementsByTagName(RACINE_TEAM);
+		   
+		    buildEquipeEtClassement( nl1);
+			buidJournee( nl2) ;
 			
 		
 			//setContentView(R.layout.main_league_onglet);
@@ -156,4 +132,57 @@ public class ScottishLeagueActivity extends Activity{
 			itent = new Intent(this, ChoixLeagueActivity.class);
 			return itent;
 		}
+		
+		private void buildEquipeEtClassement(NodeList nl){
+			for(int a = 0; a < nl.getLength(); a++){			
+				
+				Element elt = (Element) nl.item(a);
+				this.data = new DataEquipe() ;
+				data .setNomEquipe(parser.getValue(elt, TEAM_NAME ));
+				data.setCote(parser.getValue(elt, TEAM_ID) );
+				data.setiDTeam(parser.getValue(elt, TEAM_ID) ); 
+				data.setRang(String.valueOf(a)) ;
+				listEquipe.add(data);
+				listClassement.add(data) ;
+			
+			}
+		}
+		private void buidJournee(NodeList nl){
+			
+			for(int a = 0; a < nl.getLength(); a++){			
+				
+				Element elt2 = (Element) nl.item(a);
+				Date date = new Date();
+	
+				 this.dataj = new DataJournee() ;
+
+
+				dataj.setEquipe1(parser.getValue(elt2,EQUIPE_1)) ;
+				dataj.setEquipe2(parser.getValue(elt2,EQUIPE_2)) ;
+				dataj.setScore1(parser.getValue(elt2,SCORE_1));
+				dataj.setScore2(parser.getValue(elt2,SCORE_2));
+				//String dt = setDateFormat(parser.getValue(elt1,DATE));
+				dataj.setPeriode(parser.getValue(elt2,DATE)) ;
+				dataj.setNumJournee(String.valueOf(a));
+				dataj.setEtat("etat");
+					
+
+				listJournee.add(dataj);
+
+				
+			}
+			
+		}
+		
+		public String setDateFormat(String date){
+			
+			// Le temps d'observation est donné sous forme d'une "époque UNIX", le nombre de secondes depuis le 1er janvier 1970
+			long epoch = Long.parseLong(date);
+			// getRelativeTimeSpanString transforme un temps en milisecondes en un temps relatif, par exemple "il y a une heure"
+			CharSequence depuis = android.text.format.DateUtils.getRelativeTimeSpanString(epoch);
+			
+			return depuis.toString() ;
+			
+		}
+		
 }
