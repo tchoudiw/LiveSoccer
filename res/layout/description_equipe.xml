@@ -18,21 +18,30 @@
             android:layout_marginLeft="20dp">
 
             <TextView
-                android:id="@+id/textville"
+                android:id="@+id/pays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ville" 
-                android:textSize="25sp"
+                android:text="@string/pays" 
+                android:textSize="20sp"
             	android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textEntraineur"
+                android:id="@+id/stade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/entraineur"
+                android:text="@string/stade"
                  android:layout_marginTop="50dp"
-                 android:textSize="25sp"
+                 android:textSize="20sp"
            		android:textStyle="bold" />
+            
+              <TextView
+	                android:id="@+id/web"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/website"
+	                android:layout_marginTop="50dp"
+	                android:textSize="20sp"
+	           		android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -43,20 +52,28 @@
             android:layout_marginLeft="20dp">
 
             <TextView
-                android:id="@+id/ville"
+                android:id="@+id/textpays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Barcelone" 
-                android:textSize="25sp"
+                android:textSize="20sp"
             	android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/entraineur"
+                android:id="@+id/textstade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mourihno" 
                 android:layout_marginTop="50dp"
-                android:textSize="25sp"
+                android:textSize="20sp"
+            	android:textStyle="bold" />
+             <TextView
+                android:id="@+id/textwebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="www.celtic.uk.co" 
+                android:layout_marginTop="50dp"
+                android:textSize="20sp"
             	android:textStyle="bold" />
 
         </LinearLayout>

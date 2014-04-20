@@ -25,8 +25,9 @@
     <string name="score">Score</string>
     <string name="paris">Parier</string>
     
-     <string name="ville">Ville : </string>
-    <string name="entraineur">Entraineur : </string>
+    <string name="pays">Pays : </string>
+    <string name="stade">Stade : </string>
+    <string name="website">Site Web : </string>
     
 
 

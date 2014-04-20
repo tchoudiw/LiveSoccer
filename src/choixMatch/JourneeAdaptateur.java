@@ -22,8 +22,6 @@ import android.widget.Toast;
 
 import com.example.livesoccer.R;
 
-import descriptionEquipe.EquipeActivity;
-
 /**
  * @author live soccer
  * 
@@ -231,7 +229,7 @@ public class JourneeAdaptateur extends BaseAdapter {
 				Toast.makeText(parent.getContext(),
 						"doit ouvrir la page : " + dataJournee.getNumJournee(),
 						Toast.LENGTH_SHORT).show();
-				Intent i = new Intent(context,EquipeActivity.class);
+				Intent i = new Intent(context,ChoixLeagueActivity.class);
 				i.putExtra("equipe1", dataJournee.getEquipe1());
 				i.putExtra("equipe2", dataJournee.getEquipe2());
 				i.putExtra("score1", dataJournee.getScore1());

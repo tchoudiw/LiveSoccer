@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.livesoccer.R;
 
@@ -85,8 +84,10 @@ public class ScotishClassementAdapteur extends BaseAdapter{
 	            public void onClick(View view) {
 	            	//TODO renvoyer dans la variable globale le nom de l'équipe 
 	            	Intent intent= new Intent(context, EquipeActivity.class);
-	                
 	            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            	intent.putExtra("equipe", dataEquipe.getNomEquipe());
+	        		intent.putExtra("id", dataEquipe.getiDTeam());
+	            	
 	            	
 	            	context.startActivity(intent);
 	            }

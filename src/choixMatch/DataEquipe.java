@@ -4,8 +4,6 @@
 package choixMatch;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.example.livesoccer.R;
 
@@ -21,7 +19,7 @@ public class DataEquipe {
 	 */
 	public DataEquipe() {
 		
-		initialiseUrl() ;
+		getAllTeamUrl() ;
 	}
 	
 	
@@ -109,42 +107,43 @@ public class DataEquipe {
 	public void setFavori(int favori) {
 		this.favori = favori;
 	}
-	/**
-	 * @return the ville
-	 */
-	public String getVille() {
-		return ville;
-	}
-
-
-	/**
-	 * @param ville the ville to set
-	 */
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-	/**
-	 * @return the entraineur
-	 */
-	public String getEntraineur() {
-		return entraineur;
-	}
-
-
-	/**
-	 * @param entraineur the entraineur to set
-	 */
-	public void setEntraineur(String entraineur) {
-		this.entraineur = entraineur;
-	}
 	
 	
-	private void initialiseUrl(){
+	
+	/**
+	 * Méthode pour recevoir L'URI de qui donne  toutes les équipes 
+	 * @return allTeamUrl
+	 */
+	public String getAllTeamUrl(){
 		final String allTeamUrl = "http://www.xmlsoccer.com/FootballDataDemo.asmx/" +
 				"GetAllTeams?ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR";
 		
-		urlContent.put("allTeam", allTeamUrl) ;
+		return allTeamUrl ;
 	}
+	
+	public String getTeamUrl(String Id){
+		
+		final String team = "http://www.xmlsoccer.com/FootballDataDemo.asmx/" +
+				"GetTeam?ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&teamName=" + Id ;
+		
+		return team ;
+	}
+	
+	/**
+	 * @return the iDTeam
+	 */
+	public String getiDTeam() {
+		return iDTeam;
+	}
+
+
+	/**
+	 * @param iDTeam the iDTeam to set
+	 */
+	public void setiDTeam(String iDTeam) {
+		this.iDTeam = iDTeam;
+	}
+
 	/**
 	 * <code>String</string> name of the team 
 	 */
@@ -171,7 +170,7 @@ public class DataEquipe {
 	/**
 	 * check box equipe 
 	 */
-	private int checkEquipe = R.id.checkEquipe;
+
 	final int favoriAndCheck []= {R.drawable.favoris,
 									R.id.checkEquipe };
 	/**
@@ -181,13 +180,8 @@ public class DataEquipe {
 	/**
 	 * ville de l'équipe 
 	 */
-	private String ville ; 
-	/**
-	 * nom de l'entraineur 
-	 */
-	private String entraineur ;
+	private String iDTeam ; 
 	
-	Map<String, String > urlContent = new HashMap<String , String>();
 	
 	
 	

@@ -104,6 +104,7 @@ public class ScottishEquipeAdapteur extends BaseAdapter{
 	                
 	            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        		intent.putExtra("equipe", dataEquipe.getNomEquipe());
+	        		intent.putExtra("id", dataEquipe.getiDTeam());
 
 	            	context.startActivity(intent);
 	            	

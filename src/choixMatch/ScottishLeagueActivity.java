@@ -48,6 +48,7 @@ public class ScottishLeagueActivity extends Activity{
 	
 	private JourneeAdaptateur mainAdapterj;
 	//private DataEquipe data = new DataEquipe() ;
+	private XMLParser parser;
 
 	
 		@Override 
@@ -68,14 +69,14 @@ public class ScottishLeagueActivity extends Activity{
 			monTabHost.addTab(monTabHost.newTabSpec("onglet_2").setIndicator( "Classement").setContent(R.id.Onglet2)); 
 			monTabHost.addTab(monTabHost.newTabSpec("onglet_3").setIndicator( "Journées").setContent(R.id.Onglet3)); 
 			
-			super.onCreate(savedInstanceState);
+			//super.onCreate(savedInstanceState);
 			DataEquipe dat = new DataEquipe() ;
 			setListEquipe(new ArrayList<DataEquipe>());
 			setListClassement(new ArrayList<DataEquipe>());
 			setListJournee(new ArrayList<DataJournee>()) ;
-			 XMLParser parser = new XMLParser();
-		     String xml = parser.getXmlFromUrl(dat.urlContent.get("allTeam")); // getting XML
-		     Document doc = parser.getDomElement(xml); // getting DOM element
+			parser = new XMLParser();
+		    String xml = parser.getXmlFromUrl(dat.getAllTeamUrl()); // getting XML
+		    Document doc = parser.getDomElement(xml); // getting DOM element
 		     
 		     NodeList nl = doc.getElementsByTagName(KEY_ITEM);
 	     
@@ -94,6 +95,7 @@ public class ScottishLeagueActivity extends Activity{
 				
 				data .setNomEquipe(parser.getValue(elt, KEY_NAME ));
 				data.setCote(parser.getValue(elt, KEY_ID) );
+				data.setiDTeam(parser.getValue(elt, KEY_ID) ); 
 				data.setRang(String.valueOf(a)) ;
 				//data.setPoint(parser.getValue(elt, KEY_COST)) ;
 				

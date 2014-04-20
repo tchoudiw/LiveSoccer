@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class ChoixAdapter extends BaseAdapter{
 
-	private LayoutInflater inflater;
+
 	Context context ;
 	/**
 	 * Constructor 
