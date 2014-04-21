@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.livesoccer.R;
 
+import database.DBHelper;
 import descriptionEquipe.EquipeActivity;
 
 /**
@@ -69,9 +70,15 @@ public class ScotishClassementAdapteur extends BaseAdapter{
 		TextView textEquipe = (TextView)view.findViewById(R.id.equipec);
 		textEquipe.setText(dataEquipe.getNomEquipe());
 		
-		ImageView icon = (ImageView)view.findViewById(R.id.favorisc);
-		icon.setImageResource(dataEquipe.getFavori());
-
+		DBHelper dbh = new DBHelper(context);
+		
+		if(dbh.isFavori(dataEquipe.getNomEquipe())){
+			view.findViewById(R.id.favorisc).setVisibility(View.VISIBLE);
+		}
+		else{
+			view.findViewById(R.id.favorisc).setVisibility(View.INVISIBLE);
+		}
+		
 		TextView textPoint = (TextView)view.findViewById(R.id.pointc);
 		textPoint.setText(String.valueOf(dataEquipe.getPoint()));
 		//view.findViewById(R.id.leagueInner).setVisibility(View.VISIBLE);
@@ -86,7 +93,7 @@ public class ScotishClassementAdapteur extends BaseAdapter{
 	            	Intent intent= new Intent(context, EquipeActivity.class);
 	            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	            	intent.putExtra("equipe", dataEquipe.getNomEquipe());
-	        		intent.putExtra("id", dataEquipe.getiDTeam());
+	            	intent.putExtra("id_Equipe", dataEquipe.getiDTeam());
 	            	
 	            	
 	            	context.startActivity(intent);

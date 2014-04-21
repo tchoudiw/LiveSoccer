@@ -135,7 +135,7 @@ public class DataJournee {
 	public long getDateMatch(){
 		return dateMatch;
 	}
-
+	
 	/**
 	 * @return the numJournee
 	 */
@@ -150,10 +150,6 @@ public class DataJournee {
 		this.numJournee = numJournee;
 	}
 	
-	/**
-	 * Journee d'une équipe donnée 
-	 * @return journee URL 
-	 */
 	public String getJourneeUrl(){
 		
 		final String journee = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndLeague?&" +
@@ -163,33 +159,10 @@ public class DataJournee {
 		return journee ;
 	}
 	
-	
-//http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndTeam?ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&startDateString=2012-01-01&endDateString=2015-01-01&teamId=50
-
-public String getTeamJourneeUrl(String idEquipe){
-	 final String  journeeEquipe = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndTeam?" +
-	 		"ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR" +
-	 		"&startDateString="+dateDebut + "&endDateString=" + dateFin  +"&teamId=" +idEquipe ; 
-	return journeeEquipe ;
-}	
-	
-	
-	
-	/**
-	 * @return the idMatch
-	 */
 	public String getIdMatch() {
-		return idMatch;
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-	/**
-	 * @param idMatch the idMatch to set
-	 */
-	public void setIdMatch(String idMatch) {
-		this.idMatch = idMatch;
-	}
-
-
 
 	/**
 	 * Equipe 1 
@@ -216,17 +189,10 @@ public String getTeamJourneeUrl(String idEquipe){
 	 * periode de l'évènement 
 	 */
 
-	private String periode ;
-	
-	/**
-	 * Id DU MATCH
-	 */
-	private String idMatch ;
-	
-	/**
-	 * date du match en format long
-	 */
+
 	private long dateMatch;
+	
+	private String periode ;
 
 	/**
 	 * titre constant des entetes de journee
@@ -243,7 +209,6 @@ public String getTeamJourneeUrl(String idEquipe){
 	 * Numéro de la journee 
 	 */
 	private String numJournee ;
-	
 	
 	private final String dateDebut="2012-01-01";
 	private final String dateFin = "2015-01-01";

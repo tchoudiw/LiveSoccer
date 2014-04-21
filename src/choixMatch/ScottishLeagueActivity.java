@@ -49,6 +49,8 @@ public class ScottishLeagueActivity extends Activity{
 	private static final String SCORE_1 = "HomeGoals";
 	private static final String SCORE_2 = "AwayGoals";
 	private static final String DATE = "Date";
+	private static final String ID_MATCH = "Id";
+	private static final String ROUND = "Round";
    
 	
 	private JourneeAdaptateur mainAdapterj;
@@ -152,8 +154,6 @@ public class ScottishLeagueActivity extends Activity{
 			for(int a = 0; a < nl.getLength(); a++){			
 				
 				Element elt2 = (Element) nl.item(a);
-				Date date = new Date();
-	
 				 this.dataj = new DataJournee() ;
 
 
@@ -161,9 +161,11 @@ public class ScottishLeagueActivity extends Activity{
 				dataj.setEquipe2(parser.getValue(elt2,EQUIPE_2)) ;
 				dataj.setScore1(parser.getValue(elt2,SCORE_1));
 				dataj.setScore2(parser.getValue(elt2,SCORE_2));
+				dataj.setIdMatch(parser.getValue(elt2,ID_MATCH));
 				//String dt = setDateFormat(parser.getValue(elt1,DATE));
 				dataj.setPeriode(parser.getValue(elt2,DATE)) ;
-				dataj.setNumJournee(String.valueOf(a));
+				String jour = "Journeé N° "+ parser.getValue(elt2,ROUND)  ;
+				dataj.setNumJournee(jour);
 				dataj.setEtat("etat");
 					
 

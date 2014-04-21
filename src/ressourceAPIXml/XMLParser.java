@@ -69,11 +69,11 @@ public class XMLParser {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
  
-            DocumentBuilder dbuider = factory.newDocumentBuilder();
+            DocumentBuilder dbuilder = factory.newDocumentBuilder();
  
             InputSource input = new InputSource();
                 input.setCharacterStream(new StringReader(xml));
-                doc = dbuider.parse(input); 
+                doc = dbuilder.parse(input); 
  
             } catch (ParserConfigurationException e) {
                 Log.e("Error: ", e.getMessage());

@@ -4,14 +4,12 @@
 package descriptionEquipe;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import ressourceAPIXml.XMLParser;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -37,8 +35,17 @@ public class EquipeActivity extends Activity{
 	private TabHost monTabHost ;
 	private ListView mainList1 ;
 	private DataEquipe data = new DataEquipe();
+	private DataJournee dataj = new DataJournee();
 	private ArrayList<DataJournee> listJournee ;
-
+	
+	private static final String RACINE_MATCH = "Match";
+	private static final String EQUIPE_1 = "HomeTeam";
+	private static final String EQUIPE_2 = "AwayTeam";
+	private static final String SCORE_1 = "HomeGoals";
+	private static final String SCORE_2 = "AwayGoals";
+	private static final String DATE = "Date";
+	private static final String ID_MATCH = "Id";
+	private static final String ROUND = "Round";
 
 	
 	private JourneeAdaptateur mainAdapterj;
@@ -57,59 +64,41 @@ public class EquipeActivity extends Activity{
 	
 		Bundle b = getIntent().getExtras();
 		String equipe = "" ;
-		String  Id = "" ;
+		String  IdEquipe = "" ;
 		TextView textEquipe = (TextView) findViewById(R.id.nomEquipe);
 		TextView textPays = (TextView) findViewById(R.id.textpays);
 		TextView textStade = (TextView) findViewById(R.id.textstade);
 		TextView textWebSite = (TextView) findViewById(R.id.textwebsite);
+		
 		if(b!=null) {
-			equipe= b.getString("equipe");
-			Id = b.getString("id") ;
+			 equipe= b.getString("equipe");
+			 IdEquipe = b.getString("id_Equipe") ;
 		}
 		else {
 			equipe="blublbulub";}
 		
 		Toast.makeText(this,"equipe = "+equipe, Toast.LENGTH_LONG).show();
 		
+		setListJournee(new ArrayList<DataJournee>()) ;
 		parser = new XMLParser();
-	    String xml = parser.getXmlFromUrl(data.getTeamUrl(Id)); // getting XML
-	    Document doc = parser.getDomElement(xml); // getting DOM element
+	    String xmlEquipe = parser.getXmlFromUrl(data.getTeamUrl(IdEquipe)); // getting XML
+	    String xmlJournee = parser.getXmlFromUrl(dataj.getTeamJourneeUrl(IdEquipe));
+	    Document doc = parser.getDomElement(xmlEquipe);
+	    
+	    // getting DOM element
 	    NodeList nl = doc.getElementsByTagName(RACINE);
+	    
+	    
 	    Element elt = (Element) nl.item(0);
-
-
 	    textEquipe.setText(equipe);
 		textPays.setText(parser.getValue(elt, PAYS ));
 		textStade.setText(parser.getValue(elt, STADE )); 
 		textWebSite.setText(parser.getValue(elt, WEBSITE )); 
 		
-
-		setListJournee(new ArrayList<DataJournee>()) ;
-		
-		for(int a = 0; a < 30; a++)
-		{			
-			
-			Date date = new Date();
-			String equipe2 = "equipe" + a ;
-			
-			String score = "1";
-			//DataEquipe data = new DataEquipe() ;
-			DataJournee dataj = new DataJournee() ;
-
-			//this.setEquipe1("equipe1");
-			dataj.setEquipe1("equipe1") ;
-			dataj.setEquipe2(equipe2) ;
-			dataj.setScore1(score);
-			dataj.setScore2(score);
-			dataj.setPeriode(date.toString()) ;
-			dataj.setNumJournee(String.valueOf(a));
-			dataj.setEtat("etat");
-			listJournee.add(dataj);
-			
-			
-		}
-	
-
+		//setListJournee(new ArrayList<DataJournee>()) ;
+		Document doc2 = parser.getDomElement(xmlJournee);
+		NodeList nl2 = doc2.getElementsByTagName(RACINE_MATCH);
+		buidJournee( nl2) ;
 		mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext()) ;
 		
 		mainList1.setAdapter(mainAdapterj);
@@ -117,6 +106,36 @@ public class EquipeActivity extends Activity{
 		
 	}
 
+	
+	private void buidJournee(NodeList nl){
+		
+		for(int a = 0; a < nl.getLength(); a++){			
+			
+			Element elt2 = (Element) nl.item(a);
+			 this.dataj = new DataJournee() ;
+
+
+			dataj.setEquipe1(parser.getValue(elt2,EQUIPE_1)) ;
+			dataj.setEquipe2(parser.getValue(elt2,EQUIPE_2)) ;
+			dataj.setScore1(parser.getValue(elt2,SCORE_1));
+			dataj.setScore2(parser.getValue(elt2,SCORE_2));
+			dataj.setIdMatch(parser.getValue(elt2,ID_MATCH));
+			//String dt = setDateFormat(parser.getValue(elt1,DATE));
+			dataj.setPeriode(parser.getValue(elt2,DATE)) ;
+			String jour = "Journeé N° "+ parser.getValue(elt2,ROUND)  ;
+			dataj.setNumJournee(jour);
+			dataj.setEtat("etat");
+				
+
+			listJournee.add(dataj);
+
+			
+		}
+		
+	}
+	
+	
+	
 
 	public void setListJournee(ArrayList<DataJournee> listJournee) {
 		this.listJournee = listJournee;

@@ -93,7 +93,7 @@ public class JourneeAdaptateur extends BaseAdapter {
 		
 		TextView textJournee = (TextView) view.findViewById(R.id.journeej);
 		TextView textEtat = (TextView) view.findViewById(R.id.etatj);
-		//TextView textEquipe = (TextView) view.findViewById(R.id.equipej);
+		TextView textEquipe = (TextView) view.findViewById(R.id.equipej);
 		TextView textScore = (TextView) view.findViewById(R.id.scorej);
 		TextView textParis = (TextView) view.findViewById(R.id.parisj);
 		ImageView icon = (ImageView) view.findViewById(R.id.barrej);
@@ -115,7 +115,7 @@ public class JourneeAdaptateur extends BaseAdapter {
 		
 		textJournee.setText(dataJournee.getNumJournee());
 		textEtat.setText(dataJournee.getEtat());
-		//textEquipe.setText(dataJournee.intitulle[0]);
+		textEquipe.setText(dataJournee.intitulle[0]);
 		textScore.setText(dataJournee.intitulle[1]);
 		textParis.setText(dataJournee.intitulle[2]);
 		icon.setImageResource(dataJournee.intitulle[3]);
@@ -158,7 +158,17 @@ public class JourneeAdaptateur extends BaseAdapter {
 		textScore1.setText(dataJournee.getScore1());
 		textScore2.setText(dataJournee.getScore2());
 		textPeriode.setText(dataJournee.getPeriode());
-	
+
+		// +dataJournee.getPeriode().compareTo(date) ;
+
+		//
+		if (position % 9 == 0) {
+			view.findViewById(R.id.journeej).setVisibility(View.VISIBLE);
+		} else {
+			view.findViewById(R.id.journeej).setVisibility(View.GONE);
+			view.findViewById(R.id.equipej).setVisibility(View.INVISIBLE);
+		}
+		
 		
 		Timestamp stampCurrant = new java.sql.Timestamp(System.currentTimeMillis());
 		Timestamp stampMatch = new java.sql.Timestamp(dataJournee.getDateMatch());
@@ -271,7 +281,10 @@ public class JourneeAdaptateur extends BaseAdapter {
 						"doit ouvrir la page : " + dataJournee.getNumJournee(),
 						Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(context,ChoixLeagueActivity.class);
-				i.putExtra("id_Match", dataJournee.getIdMatch());
+				i.putExtra("equipe1", dataJournee.getEquipe1());
+				i.putExtra("equipe2", dataJournee.getEquipe2());
+				i.putExtra("score1", dataJournee.getScore1());
+				i.putExtra("score2", dataJournee.getScore2());
 			
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(i);
@@ -280,7 +293,6 @@ public class JourneeAdaptateur extends BaseAdapter {
 
 		return view;
 	}
-	
 	
 	
 //	private void setCheckBoxFalse(boolean[]data, int n){

@@ -17,6 +17,7 @@
 		       	android:layout_marginLeft="50dip" 
 		     	 android:layout_marginRight="25dip"
 		        android:text="Equipe "
+		        android:textColor="#AAAA00"
 		        android:textSize="@dimen/activity_vertical_margin"
 		        android:textStyle="bold" 
 		        android:layout_gravity="left"
@@ -30,6 +31,7 @@
 		        android:textStyle="bold" 
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="45dip" 
+		        android:textColor="#AAAA00"
 		     	android:layout_marginRight="25dip" />
 		
 		    <TextView
@@ -38,6 +40,7 @@
 		        android:layout_height="wrap_content"
 		        android:text="Cote"
 		        android:textStyle="bold" 
+		        android:textColor="#AAAA00"
 		       	android:layout_marginLeft="25dip" 
 		      	android:layout_marginRight="15dip"
 		        android:layout_gravity="right"
