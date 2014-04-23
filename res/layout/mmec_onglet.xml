@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<include layout="@layout/mmec_header" />
+  
+    <TabHost
+		android:id="@+id/mmec_TabHost01"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+			<!-- TabWidget qui sert à afficher les onglets -->
+				<TabWidget android:id="@android:id/tabs"
+					android:layout_width="match_parent"
+					android:gravity="center_vertical"
+					android:textColor="#AAAA00"
+        			android:textSize="20sp"
+					android:layout_height="wrap_content">
+				</TabWidget>
+			<!-- contenu de nos onglets. -->
+			<FrameLayout
+				android:id="@android:id/tabcontent"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+			<!-- Contenu de l’onglet N°1 -->
+
+				<LinearLayout
+				    android:id="@+id/mmec_Onglet1"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:orientation="vertical" >
+
+					
+
+					 <ListView
+					     android:id="@+id/mmec_journeeF"
+					     android:layout_width="match_parent"
+					     android:divider="#CCCC00"
+    					 android:dividerHeight="1px"
+					     android:layout_height="wrap_content" >
+
+				    </ListView>	
+				</LinearLayout>
+				<!-- Contenu de l’onglet N°2 -->
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:id="@+id/mmec_Onglet2">
+					
+					 <ListView
+					     android:id="@+id/mmec_journeeS"
+					     android:layout_width="wrap_content"
+					     android:divider="#FFCC00"
+    					 android:dividerHeight="1px"
+					     android:layout_height="fill_parent" >
+
+				    </ListView>	
+					
+					
+				</LinearLayout>
+				<!-- Contenu de l’onglet N°3 -->
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:id="@+id/mmec_Onglet3">
+				
+					 <ListView
+					     android:id="@+id/mmec_journeeP"
+					     android:layout_width="fill_parent"
+					     android:divider="#FFCC00"
+    					 android:dividerHeight="2px"
+					     android:layout_height="fill_parent" >
+
+				    </ListView>	
+				</LinearLayout>
+			</FrameLayout>
+		</LinearLayout>
+	</TabHost>	    
+    
+</LinearLayout>

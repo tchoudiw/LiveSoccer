@@ -6,10 +6,12 @@ package choixMatch;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,7 +80,7 @@ public class JourneeAdaptateur extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, final ViewGroup parent) {
-		DataJournee dataJournee = listMatch.get(position);
+		final DataJournee dataJournee = listMatch.get(position);
 
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater) context
@@ -90,10 +92,12 @@ public class JourneeAdaptateur extends BaseAdapter {
 		// else{
 		// viewHolder=(ViewHolder) view.getTag();
 		// }
+		Log.d("JourneAdapter", "getView:  Position " + position);
+
 		
 		TextView textJournee = (TextView) view.findViewById(R.id.journeej);
 		TextView textEtat = (TextView) view.findViewById(R.id.etatj);
-		//TextView textEquipe = (TextView) view.findViewById(R.id.equipej);
+		TextView textEquipe = (TextView) view.findViewById(R.id.equipej);
 		TextView textScore = (TextView) view.findViewById(R.id.scorej);
 		TextView textParis = (TextView) view.findViewById(R.id.parisj);
 		ImageView icon = (ImageView) view.findViewById(R.id.barrej);
@@ -111,67 +115,130 @@ public class JourneeAdaptateur extends BaseAdapter {
 		view.setTag(Integer.valueOf(position));
 
 		
-		DBHelper dbh = new DBHelper(context);
+		final DBHelper dbh = new DBHelper(context);
+		
+		final int idMatch = Integer.parseInt(dataJournee.getIdMatch());
 		
 		textJournee.setText(dataJournee.getNumJournee());
 		textEtat.setText(dataJournee.getEtat());
-		//textEquipe.setText(dataJournee.intitulle[0]);
+		textEquipe.setText(dataJournee.intitulle[0]);
 		textScore.setText(dataJournee.intitulle[1]);
 		textParis.setText(dataJournee.intitulle[2]);
 		icon.setImageResource(dataJournee.intitulle[3]);
 		textEquipe1.setText(dataJournee.getEquipe1());
 		textEquipe2.setText(dataJournee.getEquipe2());
-
 		
+		
+		boolean isMatchSuivi = dbh.isMatchSuivi(idMatch);
 		boolean equipe1_favori = dbh.isFavori(dataJournee.getEquipe1());
 		boolean equipe2_favori = dbh.isFavori(dataJournee.getEquipe2());
 		
-		//Controle d'icone favori d'equipe 1
-		if(equipe1_favori){
-			icon1.setImageResource(dataJournee.intitulle[4]);
-			view.findViewById(R.id.favorisj1).setVisibility(View.VISIBLE);
-		}
-		else{
-			view.findViewById(R.id.favorisj1).setVisibility(View.INVISIBLE);
-		}
-
-		//Controle d'icone favori d'equipe 2
-		if(equipe2_favori){
-			icon2.setImageResource(dataJournee.intitulle[4]);
-			view.findViewById(R.id.favorisj2).setVisibility(View.VISIBLE);
-		}
-		else{
-			view.findViewById(R.id.favorisj2).setVisibility(View.INVISIBLE);
-		}
-
-		//Controle du bouton suivre
-		if(equipe1_favori || equipe2_favori){
-			view.findViewById(R.id.suivrej).setVisibility(View.INVISIBLE);
-		}
-		else{
-			view.findViewById(R.id.suivrej).setVisibility(View.VISIBLE);
-		}
-
+		final HashMap<String, String> matchCourrant = dbh.getMatch(idMatch);
+		view.findViewById(R.id.suivrej).setVisibility(View.VISIBLE);
 		
+		Log.d("JourneAdapter", "getView:  matchCourrantet " + matchCourrant);
+		//Verifier si le match est dans la base de donnees
+		if(matchCourrant != null){
+			Log.d("JourneAdapter", "getView 11 :  matchCourrantet " + matchCourrant);
+			//Controle du bouton suivre			
+			if(equipe1_favori || equipe2_favori){
+				view.findViewById(R.id.suivrej).setVisibility(View.INVISIBLE);
+			}
+			else if(matchCourrant.get("is_suivi").equals("suivi")){
+				view.findViewById(R.id.suivrej).setVisibility(View.VISIBLE);
+				suivre.setText(R.string.nsuivie);
+				suivre.setBackgroundColor(Color.argb(255, 200, 50, 0));
+			}
+			else if(matchCourrant.get("is_suivi").equals("nonSuivi")){
+				suivre.setBackgroundColor(Color.argb(255, 50, 200, 0));
+				suivre.setText(R.string.suivie);
+
+			}
+
+			Log.d("JourneAdapter", "getView 22 :  matchCourrantet " + matchCourrant);
+			
+			//controle check1
+			if(matchCourrant.get("pari_equipe1").equals("true")){
+				check1.setChecked(true);
+			}
+			else{
+				check1.setChecked(false);
+			}
+			Log.d("JourneAdapter", "getView 33 :  matchCourrantet " + matchCourrant);
+			
+			//controle check2
+			if(matchCourrant.get("pari_equipe2").equals("true")){
+				check2.setChecked(true);
+			}
+			else{
+				check2.setChecked(false);
+			}
+			
+			
+			//Controle d'icone favori d'equipe 1
+			if(equipe1_favori){
+				icon1.setImageResource(dataJournee.intitulle[4]);
+				view.findViewById(R.id.favorisj1).setVisibility(View.VISIBLE);
+			}
+			else{
+				view.findViewById(R.id.favorisj1).setVisibility(View.INVISIBLE);
+			}
+			
+			//Controle d'icone favori d'equipe 2
+			if(equipe2_favori){
+				icon2.setImageResource(dataJournee.intitulle[4]);
+				view.findViewById(R.id.favorisj2).setVisibility(View.VISIBLE);
+			}
+			else{
+				view.findViewById(R.id.favorisj2).setVisibility(View.INVISIBLE);
+			}
+
+		}
+		else{
+			//Controle d'icone favori d'equipe 1
+			if(equipe1_favori){
+				icon1.setImageResource(dataJournee.intitulle[4]);
+				view.findViewById(R.id.favorisj1).setVisibility(View.VISIBLE);
+			}
+			else{
+				view.findViewById(R.id.favorisj1).setVisibility(View.INVISIBLE);
+			}
+			
+			//Controle d'icone favori d'equipe 2
+			if(equipe2_favori){
+				icon2.setImageResource(dataJournee.intitulle[4]);
+				view.findViewById(R.id.favorisj2).setVisibility(View.VISIBLE);
+			}
+			else{
+				view.findViewById(R.id.favorisj2).setVisibility(View.INVISIBLE);
+			}
+			
+			//Controle du bouton suivre
+			if(equipe1_favori || equipe2_favori){
+				view.findViewById(R.id.suivrej).setVisibility(View.INVISIBLE);
+			}
+			else{
+				view.findViewById(R.id.suivrej).setVisibility(View.VISIBLE);
+				suivre.setBackgroundColor(Color.argb(255, 50, 200, 0));
+				suivre.setText(R.string.suivie);
+			}
+			Log.d("JourneAdapter", "getView 22 :  matchCourrantet " + matchCourrant);
+
+		}
 		
 		
 		textScore1.setText(dataJournee.getScore1());
 		textScore2.setText(dataJournee.getScore2());
 		textPeriode.setText(dataJournee.getPeriode());
-	
 		
 		Timestamp stampCurrant = new java.sql.Timestamp(System.currentTimeMillis());
 		Timestamp stampMatch = new java.sql.Timestamp(dataJournee.getDateMatch());
 		
-		if(stampCurrant.before(stampMatch)){
-//			check1.setChecked(checkBoxState1[position]);
-//			check2.setChecked(checkBoxState2[position]);
-			view.findViewById(R.id.checkj1).setVisibility(View.VISIBLE);
-			view.findViewById(R.id.checkj2).setVisibility(View.VISIBLE);
-		}
-		else{
+		//Controle d'affichage en fonction de la date
+		if(!stampCurrant.before(stampMatch)){
 			view.findViewById(R.id.checkj1).setVisibility(View.INVISIBLE);
 			view.findViewById(R.id.checkj2).setVisibility(View.INVISIBLE);
+			view.findViewById(R.id.suivrej).setVisibility(View.INVISIBLE);
 		}
 		
 		// rendre le check box sélectionable sur le listview
@@ -181,7 +248,21 @@ public class JourneeAdaptateur extends BaseAdapter {
 			public void onClick(View view) {
 				int pos= (Integer) view.getTag();
 				boolean checked = ((CheckBox) view).isChecked();
-
+				
+				final HashMap<String, String> matchCourrant1 = dbh.getMatch(idMatch);
+								
+				if(checked && matchCourrant1 == null){
+					dbh.addNewMacth(idMatch, dataJournee.getEquipe1(), dataJournee.getEquipe1(), "true", "false", "nonSuivi");
+				}
+				else if(checked && matchCourrant1 != null){
+					dbh.updateMatchPariEquipe1(idMatch, "true");
+				}
+				
+				
+				if(!checked){
+					dbh.updateMatchPariEquipe1(idMatch, "false");
+				}
+				
 				if (checked && checkBoxState1[pos] == false) {
 
 					Toast.makeText(
@@ -205,6 +286,20 @@ public class JourneeAdaptateur extends BaseAdapter {
 				int pos=(Integer)view.getTag();
 				boolean checked = ((CheckBox) view).isChecked();
 
+				final HashMap<String, String> matchCourrant1 = dbh.getMatch(idMatch);
+				
+				if(checked && matchCourrant1 == null){
+					dbh.addNewMacth(idMatch, dataJournee.getEquipe2(), dataJournee.getEquipe2(), "false", "true", "nonSuivi");
+				}
+				else if(checked && matchCourrant1 != null){
+					dbh.updateMatchPariEquipe2(idMatch, "true");
+				}
+				
+				
+				if(!checked){
+					dbh.updateMatchPariEquipe2(idMatch, "false");
+				}
+				
 				if (checked && checkBoxState2[pos] == false) {
 	
 						Toast.makeText(
@@ -222,43 +317,39 @@ public class JourneeAdaptateur extends BaseAdapter {
 		});
 
 		 
-		//suivre.setTag(position);
-		suivre.setBackgroundColor(dataJournee.buttonState?Color.argb(255, 200, 50, 0):Color.argb(255, 50, 200, 0));
-		int text = dataJournee.buttonState?R.string.nsuivie:R.string.suivie;
-		suivre.setText(text);
 		suivre.setTag(position) ;
 		suivre.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				// buttonState[pos] = true;
+
 				int pos=(Integer)view.getTag();
 				DataJournee dataJournee = listMatch.get(pos);
 
 				Button test = (Button) view;
-				// Toast.makeText(parent.getContext(), "dposition : " + pos +
-				// " "+ buttonState[pos] , Toast.LENGTH_SHORT).show();
-				// buttonState[pos] = true;
-				if (dataJournee.buttonState == false) {
 
-					test.setText(R.string.nsuivie);
-					Toast.makeText(parent.getContext(),
-							"dposition : " + pos + " " ,
-							Toast.LENGTH_SHORT).show();
-					test.setBackgroundColor(Color.argb(255, 200, 50, 0));
-					// view.findViewById(R.id.suivrej)
-					dataJournee.buttonState = true;
-
-				} else {
-
+				final HashMap<String, String> matchCourrant1 = dbh.getMatch(idMatch);
+				
+				
+				if(matchCourrant1 != null && matchCourrant1.get("is_suivi").equals("suivi")){
 					test.setText(R.string.suivie);
-					test.setBackgroundColor(Color.argb(255, 50, 200, 0));
-					dataJournee.buttonState = false ;
+					test.setBackgroundColor(Color.argb(255, 50, 200, 0));					
+					dbh.updateMatchSuivi(idMatch, "nonSuivi");
+				}
+				else if(matchCourrant1 != null && matchCourrant1.get("is_suivi").equals("nonSuivi")){
+					test.setText(R.string.nsuivie);
+					test.setBackgroundColor(Color.argb(255, 200, 50, 0));
+					dbh.updateMatchSuivi(idMatch, "suivi");
 				}
 				
-
+				if(matchCourrant1 == null){
+					test.setText(R.string.nsuivie);
+					test.setBackgroundColor(Color.argb(255, 200, 50, 0));
+					dbh.addNewMacth(idMatch, dataJournee.getEquipe1(), dataJournee.getEquipe1(), "false", "false", "suivi");
+				}
 			}
 		});
 
+		
 		// if click in the listview different to checkbox
 		view.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -271,7 +362,10 @@ public class JourneeAdaptateur extends BaseAdapter {
 						"doit ouvrir la page : " + dataJournee.getNumJournee(),
 						Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(context,ChoixLeagueActivity.class);
-				i.putExtra("id_Match", dataJournee.getIdMatch());
+				i.putExtra("equipe1", dataJournee.getEquipe1());
+				i.putExtra("equipe2", dataJournee.getEquipe2());
+				i.putExtra("score1", dataJournee.getScore1());
+				i.putExtra("score2", dataJournee.getScore2());
 			
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(i);
@@ -280,23 +374,4 @@ public class JourneeAdaptateur extends BaseAdapter {
 
 		return view;
 	}
-	
-	
-	
-//	private void setCheckBoxFalse(boolean[]data, int n){
-//		for (int i = 0; i < n; i++) {
-//			data[i] = false ;
-//		}
-//		
-//	}
-
-	// public void testOnClick(View btn)
-	// {
-	// Toast.makeText(getApplicationContext(), toastText,
-	// Toast.LENGTH_SHORT).show();
-	//
-	// Intent i = new Intent(ExplicitActivity.this, ImplementsActivity.class);
-	// startActivity(i);
-	// }
-
 }

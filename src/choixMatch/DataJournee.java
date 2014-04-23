@@ -221,7 +221,7 @@ public String getTeamJourneeUrl(String idEquipe){
 	/**
 	 * Id DU MATCH
 	 */
-	private String idMatch ;
+	private String idMatch = "1";
 	
 	/**
 	 * date du match en format long
