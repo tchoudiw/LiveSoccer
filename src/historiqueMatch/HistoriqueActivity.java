@@ -50,14 +50,7 @@ private ArrayList<DataJournee> listJournee ;
 		  // All static variables
 	static final String URL = "http://api.androidhive.info/pizza/?format=xml";
 	    // XML node keys
-	static final String RACINE_TEAM = "Team"; // parent node
-	static final String TEAM_ID = "Team_Id";
-	static final String TEAM_NAME = "Name";
-	private static final String RACINE_MATCH = "Match";
-	private static final String EQUIPE_1 = "HomeTeam";
-	private static final String EQUIPE_2 = "AwayTeam";
-	private static final String SCORE_1 = "HomeGoals";
-	private static final String SCORE_2 = "AwayGoals";
+
 	private static final String DATE = "Date";  
 
 	private JourneeAdaptateur mainAdapterj;
@@ -154,50 +147,6 @@ private ArrayList<DataJournee> listJournee ;
 				return itent;
 			}
 			
-			private void buildEquipeEtClassement(NodeList nl){
-				for(int a = 0; a < nl.getLength(); a++){			
-					
-					Element elt = (Element) nl.item(a);
-					this.data = new DataEquipe() ;
-					data .setNomEquipe(parser.getValue(elt, TEAM_NAME ));
-					//data.setCote(parser.getValue(elt, TEAM_ID) );
-					data.setiDTeam(parser.getValue(elt, TEAM_ID) ); 
-					//data.setRang(String.valueOf(a)) ;
-					listEquipe.add(data);
-					//listClassement.add(data) ;
-				
-				}
-			}
-			private void buidJournee(NodeList nl){
-				
-				for(int a = 0; a < nl.getLength(); a++){			
-					
-					Element elt2 = (Element) nl.item(a);
-					Date date = new Date();
 		
-					 this.dataj = new DataJournee() ;
-
-					dataj.setEquipe1(parser.getValue(elt2,EQUIPE_1)) ;
-					dataj.setEquipe2(parser.getValue(elt2,EQUIPE_2)) ;
-			     	dataj.setScore1(parser.getValue(elt2,SCORE_1));
-					dataj.setScore2(parser.getValue(elt2,SCORE_2));
-					//String dt = setDateFormat(parser.getValue(elt1,DATE));
-					dataj.setPeriode(parser.getValue(elt2,DATE)) ;
-					dataj.setNumJournee(String.valueOf(a));
-					//dataj.setEtat("etat");
-						
-					listJournee.add(dataj);
-				}
-			}
-			
-			public String setDateFormat(String date){
-				
-				// Le temps d'observation est donné sous forme d'une "époque UNIX", le nombre de secondes depuis le 1er janvier 1970
-				long epoch = Long.parseLong(date);
-				// getRelativeTimeSpanString transforme un temps en milisecondes en un temps relatif, par exemple "il y a une heure"
-				CharSequence depuis = android.text.format.DateUtils.getRelativeTimeSpanString(epoch);
-				
-				return depuis.toString() ;	
-			}
 }
 

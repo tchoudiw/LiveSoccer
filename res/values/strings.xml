@@ -11,7 +11,7 @@
     <string name="mes_equipes">Mes equipes suivies</string>
     <string name="configuration_sons">Configuration de sons</string>
     <string name="choix_league">Choisir une League</string> 
-    
+    <string name="detail_match">Details du Match</string> 
     
     <string name="scottish">Scottish Premier League</string>
     <string name="french">Ligue 1</string>
@@ -28,6 +28,9 @@
     <string name="pays">Pays : </string>
     <string name="stade">Stade : </string>
     <string name="website">Site Web : </string>
+    <string name="nom_buteur">Noms des buteurs</string>
+    <string name="carton_jaune">Cartons Jaunes</string>
+    <string name="carton_rouge">Cartons rouges</string>
     
 
 

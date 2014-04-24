@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.example.livesoccer.R;
 
 import database.DBHelper;
+import descriptionEquipe.MatchActivity;
 
 /**
  * @author live soccer
@@ -358,15 +359,15 @@ public class JourneeAdaptateur extends BaseAdapter {
 				int pos=(Integer)view.getTag();
 				DataJournee dataJournee = listMatch.get(pos);
 
-				Toast.makeText(parent.getContext(),
-						"doit ouvrir la page : " + dataJournee.getNumJournee(),
-						Toast.LENGTH_SHORT).show();
-				Intent i = new Intent(context,ChoixLeagueActivity.class);
+//				Toast.makeText(parent.getContext(),
+//						"doit ouvrir la page : " + dataJournee.getNumJournee(),
+//						Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(context,MatchActivity.class);
+				i.putExtra("id_match", dataJournee.getIdMatch());
 				i.putExtra("equipe1", dataJournee.getEquipe1());
 				i.putExtra("equipe2", dataJournee.getEquipe2());
-				i.putExtra("score1", dataJournee.getScore1());
-				i.putExtra("score2", dataJournee.getScore2());
-			
+				i.putExtra("periode", dataJournee.getDateMatch());
+				i.putExtra("date", dataJournee.getPeriode());
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(i);
 			}

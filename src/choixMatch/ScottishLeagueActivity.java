@@ -94,6 +94,8 @@ public class ScottishLeagueActivity extends Activity{
 		   
 		    NodeList nl2 = doc2.getElementsByTagName(RACINE_MATCH);
 		    NodeList nl1 = doc1.getElementsByTagName(RACINE_TEAM);
+		    
+		    
 		   
 		    buildEquipeEtClassement( nl1);
 			buidJournee( nl2) ;

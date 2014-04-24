@@ -9,6 +9,7 @@ import java.util.Date;
 
 import com.example.livesoccer.R;
 
+
 /**
  * @author live Soccer
  *
@@ -171,10 +172,19 @@ public String getTeamJourneeUrl(String idEquipe){
 	 		"ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR" +
 	 		"&startDateString="+dateDebut + "&endDateString=" + dateFin  +"&teamId=" +idEquipe ; 
 	return journeeEquipe ;
-}	
+}
 	
 	
-	
+	/**
+	 * méthode pour URL des détail d'un match
+	 * @return 
+	 */
+	public String getMatchDetailUrl(String idMatch){
+		final String matchDetail = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetHistoricMatchesByFixtureMatchID?" +
+				"ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&Id=" + idMatch ;
+		return matchDetail ;
+		
+	}
 	/**
 	 * @return the idMatch
 	 */
@@ -194,11 +204,11 @@ public String getTeamJourneeUrl(String idEquipe){
 	/**
 	 * Equipe 1 
 	 */
-	private String equipe1 ;
+	private String equipe1 = "Celtic";
 	/**
 	 * Equipe 1 
 	 */
-	private String equipe2 ;
+	private String equipe2 = "Rangers";
 	
 	/**
 	 * Score de l'équipe 2
@@ -221,7 +231,7 @@ public String getTeamJourneeUrl(String idEquipe){
 	/**
 	 * Id DU MATCH
 	 */
-	private String idMatch = "1";
+	private String idMatch = "307523";
 	
 	/**
 	 * date du match en format long

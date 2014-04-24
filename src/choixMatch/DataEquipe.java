@@ -147,7 +147,7 @@ public class DataEquipe {
 	/**
 	 * <code>String</string> name of the team 
 	 */
-	private  String nomEquipe = "";
+	private  String nomEquipe = "Rangers";
 	
 	/**
 	 * Cote of the team 
@@ -180,7 +180,7 @@ public class DataEquipe {
 	/**
 	 * ville de l'équipe 
 	 */
-	private String iDTeam ; 
+	private String iDTeam = "50"; 
 	
 	
 	

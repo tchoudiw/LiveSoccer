@@ -5,9 +5,10 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:id="@+id/Onglet2">
+		<include layout="@layout/text_equipe_suivies" />
 		<include layout="@layout/entete_equipe_suivie" />
 		 <ListView
-		     android:id="@+id/listclassement"
+		     android:id="@+id/listsuivie"
 		     android:layout_width="wrap_content"
 		     android:divider="#FFCC00"
  			 android:dividerHeight="1px"

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="match_parent"
+    
+    android:orientation="vertical" >
+    
+    	 <TextView
+             android:id="@+id/equiped1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/equipe"
+              android:layout_marginTop="10dp"
+             android:textSize="14sp"
+        	 android:textStyle="bold" />
+    	  <TextView
+	           android:id="@+id/scored1"
+	           android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="0"
+                android:layout_marginTop="0dp"
+                android:textSize="14sp"
+          		android:textStyle="bold" />
+	
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" 
+	            android:layout_marginTop="10dp"
+	            android:layout_marginLeft="0dp">
+				 
+	            <TextView
+	                android:id="@+id/but"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="But"
+	                android:textSize="14sp"
+	                android:textColor="#AAAA00"
+	                android:textStyle="bold" />
+	
+	              <TextView
+		                android:id="@+id/butd1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="60dp"
+		                android:text="-"
+		                android:layout_marginTop="5dp"
+		                android:textSize="13sp"
+		           		android:textStyle="bold" />
+	
+	        </LinearLayout>
+	        
+	         <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" 
+	            android:layout_marginTop="10dp"
+	            android:layout_marginLeft="0dp">
+				 
+	            <TextView
+	                android:id="@+id/cartonj"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/carton_jaune"
+	                android:textSize="14sp"
+	                android:textColor="#AAAA00"
+	                android:textStyle="bold" />
+	
+	              <TextView
+		                android:id="@+id/cartonjd1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="60dp"
+		                android:text="--"
+		                android:layout_marginTop="5dp"
+		                android:textSize="13sp"
+		           		android:textStyle="bold" />
+	        </LinearLayout>
+	         <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" 
+	            android:layout_marginTop="10dp"
+	            android:layout_marginLeft="0dp">
+				 
+	            <TextView
+	                android:id="@+id/cartonr"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/carton_rouge"
+	                android:textSize="14sp"
+	                android:textColor="#AAAA00"
+	                android:textStyle="bold" />
+	
+	              <TextView
+		                android:id="@+id/cartonrd1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="60dp"
+		                android:text="--"
+		                android:layout_marginTop="5dp"
+		                android:textSize="13sp"
+		           		android:textStyle="bold" />
+	
+	        </LinearLayout>
+	        
+	         
+    
+</LinearLayout>

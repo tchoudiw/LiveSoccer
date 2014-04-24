@@ -37,7 +37,7 @@
 		        android:id="@+id/point"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="Point"
+		        android:text="Cote"
 		        android:textColor="#AAAA00"
 		        android:textStyle="bold" 
 		       	android:layout_marginLeft="155dip" 

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_height="wrap_content"
+        layout="@layout/configuration_son_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+			 <TextView
+			     android:id="@+id/alerte_son1"
+			     android:layout_width="wrap_content"
+			     android:layout_height="37dp"
+			     android:layout_marginRight="10dp"
+			     android:layout_marginLeft="20dp"
+			     android:text="Alertes des matchs"
+			     android:textSize="25sp"
+			     android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutson1"
+                android:layout_width="302dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" 
+                android:layout_marginLeft="20dp">
+
+                <CheckBox
+                    android:id="@+id/checkBoxSonOn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxSonOff1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="Off"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <include layout="@layout/espace" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+			 <TextView
+			     android:id="@+id/alerte_son2"
+			     android:layout_width="wrap_content"
+			     android:layout_height="37dp"
+			     android:layout_marginRight="10dp"
+			     android:layout_marginLeft="20dp"
+			     android:text="Alertes des favoris"
+			     android:textSize="25sp"
+			     android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutSon2"
+                android:layout_width="302dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" 
+                android:layout_marginLeft="20dp">
+
+
+                <CheckBox
+                    android:id="@+id/checkBoxSonOn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxSonOff2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="Off"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <include layout="@layout/espace" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+			 <TextView
+			     android:id="@+id/alerte_son3"
+			     android:layout_width="wrap_content"
+			     android:layout_height="37dp"
+			     android:layout_marginRight="10dp"
+			     android:layout_marginLeft="20dp"
+			     android:text="Alertes des paris"
+			     android:textSize="25sp"
+			     android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutSon3"
+                android:layout_width="302dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" 
+                android:layout_marginLeft="20dp">
+
+
+                <CheckBox
+                    android:id="@+id/checkBoxSonOn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxSonOff3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="Off"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
