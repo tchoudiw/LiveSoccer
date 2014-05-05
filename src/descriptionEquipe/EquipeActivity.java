@@ -99,7 +99,7 @@ public class EquipeActivity extends Activity{
 		Document doc2 = parser.getDomElement(xmlJournee);
 		NodeList nl2 = doc2.getElementsByTagName(RACINE_MATCH);
 		buidJournee( nl2) ;
-		mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext()) ;
+		mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext(), false) ;
 		
 		mainList1.setAdapter(mainAdapterj);
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import choixMatch.ChoixLeagueActivity;
 import choixMatch.DataEquipe;
 import choixMatch.DataJournee;
@@ -30,40 +32,35 @@ import com.example.livesoccer.R;
  *
  */
 public class MatchEncoursActivity extends Activity {
-private TabHost mmecTabHost01 ;
-		//= getTabHost();
-		//TabHost tabHost = getTabHost();
-	TabHost.TabSpec spec;
-	Intent intent;
-private ScottishEquipeAdapteur mainAdapter ;
-private ScotishClassementAdapteur mainAdapterc ; 
-private ListView mainList1 ;
-private ListView mainList2 ;
-private ListView mainList3 ; 
-private ArrayList<DataEquipe> listEquipe ;
-private ArrayList<DataEquipe> listClassement ;
-private ArrayList<DataJournee> listJournee ;
-	Intent itent ;
-
-		  // All static variables
-	static final String URL = "http://api.androidhive.info/pizza/?format=xml";
-	    // XML node keys
-	static final String RACINE_TEAM = "Team"; // parent node
-	static final String TEAM_ID = "Team_Id";
-	static final String TEAM_NAME = "Name";
-	private static final String RACINE_MATCH = "Match";
-	private static final String EQUIPE_1 = "HomeTeam";
-	private static final String EQUIPE_2 = "AwayTeam";
-	private static final String SCORE_1 = "HomeGoals";
-	private static final String SCORE_2 = "AwayGoals";
-	private static final String DATE = "Date";  
-
-	private JourneeAdaptateur mainAdapterj;
-	//private DataEquipe data = new DataEquipe() ;
-	private XMLParser parser;
-	private DataEquipe data;
-	private DataJournee dataj;
-		
+		private TabHost mmecTabHost01 ;
+		private ListView mainList1 ;
+		private ListView mainList2 ;
+		private ListView mainList3 ; 
+		static final String RACINE_TEAM = "Team"; // parent node
+		static final String TEAM_ID = "Team_Id";
+		static final String TEAM_NAME = "Name";
+		private static final String RACINE_MATCH = "Match";
+		private static final String EQUIPE_1 = "HomeTeam";
+		private static final String EQUIPE_2 = "AwayTeam";
+		private static final String SCORE_1 = "HomeGoals";
+		private static final String SCORE_2 = "AwayGoals";
+		private static final String DATE = "Date";
+		private static final String ID_MATCH = "Id";
+		private static final String ROUND = "Round";
+		private JourneeAdaptateur mainAdapterSuivie;
+		//private DataEquipe data = new DataEquipe() ;
+		private XMLParser parser;
+		private DataEquipe data;
+		private DataJournee dataj;
+		private JourneeAdaptateur mainAdapterMatch;
+		private ArrayList<DataJournee> listMatch;
+		private ArrayList<DataJournee> listEquipeSuivie ;
+		private ArrayList<DataJournee> listPari;
+		private JourneeAdaptateur mainAdapterPari;
+		private ArrayList<String> listMatchSuivie = new ArrayList<String>();
+		private ArrayList<String> listMatchPari = new ArrayList<String>();
+		private ArrayList<String> listMatchEquipeSuivie = new ArrayList<String>();
+				
 		@Override 
 		public void onCreate(Bundle savedInstanceState) { 
 			super.onCreate(savedInstanceState); 
@@ -81,52 +78,34 @@ private ArrayList<DataJournee> listJournee ;
 			mmecTabHost01.addTab(mmecTabHost01.newTabSpec("onglet_1").setIndicator( "Matchs").setContent(R.id.mmec_Onglet1)); 
 			mmecTabHost01.addTab(mmecTabHost01.newTabSpec("onglet_2").setIndicator( "Equipes Suivies").setContent(R.id.mmec_Onglet2)); 
 			mmecTabHost01.addTab(mmecTabHost01.newTabSpec("onglet_3").setIndicator( "Mes Paris").setContent(R.id.mmec_Onglet3)); 
+			TextView textEquipe1 = (TextView) findViewById(R.id.equiped1);
 			
-			
-			super.onCreate(savedInstanceState);
-			
-			Random r = new Random();
-			
-			setListEquipe(new ArrayList<DataEquipe>());
-			setListClassement(new ArrayList<DataEquipe>());
+
+			listMatchEquipeSuivie.add("Hearts");	
+			listMatchEquipeSuivie.add("Ross County");
+			listMatchSuivie.add("324786");	
+			listMatchSuivie.add("324787");
+			listMatchPari.add("324773");	
+			listMatchPari.add("324782");
+	
+			this.dataj = new DataJournee() ;
+			//dataj.incrementDate(new Date());
 			setListJournee(new ArrayList<DataJournee>()) ;
-			int point = 80 ;
-			for(int a = 0; a < 30; a++)
-			{			
-				
-				int random_int = r.nextInt(8);
-				String nomEquipe = "teamSottsh" + a ;
-				Date date = new Date();
-				String equipe1 = "equipe" + a ;
-				String equipe2 = equipe1 + a+1 ;
-				String score = "1";
-				DataEquipe data = new DataEquipe() ;
-				DataJournee dataj = new DataJournee() ;
-				data.setNomEquipe(nomEquipe);
-				//data.setCote(random_int) ;
-				//data.setRang(a) ;
-				//data.setPoint(point) ;
-				dataj.setEquipe1(equipe1) ;
-				dataj.setEquipe2(equipe2) ;
-				dataj.setScore1(score);
-				dataj.setScore2(score);
-				dataj.setPeriode("2014-05-10T03:15:00-08:00") ;
-				dataj.setNumJournee("Journeé N° "+ String.valueOf(a));
-				dataj.setEtat("etat");
-				//listEquipe.add(data);
-				//listClassement.add(data) ;
-				listJournee.add(dataj);
-				point-- ;
-				
-			}
+			setListMatch(new ArrayList<DataJournee> ()) ;
+			setListPari(new ArrayList<DataJournee> ());
+			parser = new XMLParser();
+			String xmlString2 = parser.getXmlFromUrl(dataj.getActuelleUrl());
+		    Document doc2 = parser.getDomElement(xmlString2);
+		    NodeList nl2 = doc2.getElementsByTagName(RACINE_MATCH);
+		   // NodeList nl1 = doc1.getElementsByTagName(RACINE_TEAM);
+			buidJournee( nl2) ;
+			mainAdapterPari = new JourneeAdaptateur(listPari, getApplicationContext(), false) ;
+			mainAdapterMatch = new JourneeAdaptateur(listMatch, getApplicationContext(), false) ;
+			mainAdapterSuivie = new JourneeAdaptateur(listEquipeSuivie, getApplicationContext(), false) ;
 			
-			//mainAdapter = new  ScottishEquipeAdapteur(listEquipe, getApplicationContext());
-			//mainAdapterc = new ScotishClassementAdapteur(listClassement, getApplicationContext());
-			mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext()) ;
-			
-			mainList1.setAdapter(mainAdapterj);
-			mainList2.setAdapter(mainAdapterj);
-			mainList3.setAdapter(mainAdapterj);
+			mainList1.setAdapter(mainAdapterMatch);
+			mainList2.setAdapter(mainAdapterSuivie);//bon
+			mainList3.setAdapter(mainAdapterPari);
 		}
 			
 			@Override
@@ -136,66 +115,91 @@ private ArrayList<DataJournee> listJournee ;
 				return true;
 			}
 						
-			public void setListEquipe(ArrayList<DataEquipe> listEquipe) {
-				this.listEquipe = listEquipe;
-			}
-			
-			public void setListClassement(ArrayList<DataEquipe> listClassement) {
-				this.listClassement = listClassement;
-			}
-			public void setListJournee(ArrayList<DataJournee> listJournee) {
-				this.listJournee = listJournee;
-			}
-		
-			public  Intent getItent() {
-				itent = new Intent(this, ChoixLeagueActivity.class);
-				return itent;
-			}
-			
-			private void buildEquipeEtClassement(NodeList nl){
-				for(int a = 0; a < nl.getLength(); a++){			
-					
-					Element elt = (Element) nl.item(a);
-					this.data = new DataEquipe() ;
-					data .setNomEquipe(parser.getValue(elt, TEAM_NAME ));
-					data.setCote(parser.getValue(elt, TEAM_ID) );
-					data.setiDTeam(parser.getValue(elt, TEAM_ID) ); 
-					//data.setRang(String.valueOf(a)) ;
-					listEquipe.add(data);
-					//listClassement.add(data) ;
-				
-				}
-			}
 			private void buidJournee(NodeList nl){
 				
 				for(int a = 0; a < nl.getLength(); a++){			
-					
 					Element elt2 = (Element) nl.item(a);
-					Date date = new Date();
-		
-					 this.dataj = new DataJournee() ;
-
-					dataj.setEquipe1(parser.getValue(elt2,EQUIPE_1)) ;
-					dataj.setEquipe2(parser.getValue(elt2,EQUIPE_2)) ;
-			     	dataj.setScore1(parser.getValue(elt2,SCORE_1));
-					dataj.setScore2(parser.getValue(elt2,SCORE_2));
-					//String dt = setDateFormat(parser.getValue(elt1,DATE));
-					dataj.setPeriode(parser.getValue(elt2,DATE)) ;
-					dataj.setNumJournee(String.valueOf(a));
-					dataj.setEtat("etat");
+					this.dataj = new DataJournee() ;
+					for(String equipe : listMatchEquipeSuivie){
 						
-					listJournee.add(dataj);
+						if(parser.getValue(elt2,EQUIPE_1).equals(equipe) || parser.getValue(elt2,EQUIPE_2).equals(equipe)){
+							setAffiche(elt2, listEquipeSuivie);
+						}
+				
+					}
+					for(String id: listMatchSuivie){
+						
+						if(parser.getValue(elt2,ID_MATCH ).equals(id) ){
+							setAffiche(elt2, listMatch);
+						}
+					}
+					for(String id: listMatchPari){
+						
+						if(parser.getValue(elt2,ID_MATCH ).equals(id) ){
+							setAffiche(elt2, listPari);
+						}
+					}
 				}
 			}
+
+			/**
+			 * @param elt2
+			 * @param listej TODO
+			 */
+			public void setAffiche(Element elt2, ArrayList<DataJournee> listej) {
+				dataj.setEquipe1(parser.getValue(elt2,EQUIPE_1)) ;
+				dataj.setEquipe2(parser.getValue(elt2,EQUIPE_2)) ;
+				dataj.setScore1(parser.getValue(elt2,SCORE_1));
+				dataj.setScore2(parser.getValue(elt2,SCORE_2));
+				dataj.setIdMatch(parser.getValue(elt2,ID_MATCH));
+				//String dt = setDateFormat(parser.getValue(elt1,DATE));
+				dataj.setPeriode(parser.getValue(elt2,DATE)) ;
+				String jour = "Journeé N° "+ parser.getValue(elt2,ROUND)  ;
+				dataj.setNumJournee(jour);
+				dataj.setEtat("etat");
+				listej.add(dataj);
+			}
 			
-			public String setDateFormat(String date){
-				
-				// Le temps d'observation est donné sous forme d'une "époque UNIX", le nombre de secondes depuis le 1er janvier 1970
-				long epoch = Long.parseLong(date);
-				// getRelativeTimeSpanString transforme un temps en milisecondes en un temps relatif, par exemple "il y a une heure"
-				CharSequence depuis = android.text.format.DateUtils.getRelativeTimeSpanString(epoch);
-				
-				return depuis.toString() ;	
+			/**
+			 * @param listMatchPari the listMatchPari to set
+			 */
+			public void setListMatchPari(ArrayList<String> listMatchPari) {
+				this.listMatchPari = listMatchPari;
+			}
+
+				/**
+			 * @param listMatchSuivie the listMatchSuivie to set
+			 */
+			public void setListMatchSuivie(ArrayList<String> listMatchSuivie) {
+				this.listMatchSuivie = listMatchSuivie;
+			}
+
+				/**
+			 * @param listPari the listPari to set
+			 */
+			public void setListPari(ArrayList<DataJournee> listPari) {
+				this.listPari = listPari;
+			}
+
+				/**
+			 * @param listEquipeSuivie the listEquipeSuivie to set
+			 */
+			public void setListEquipeSuivie(ArrayList<String> listEquipeSuivie) {
+				this.listMatchEquipeSuivie = listEquipeSuivie;
+			}
+			
+			/**
+			 * @param listMatch the listMatch to set
+			 */
+			public void setListMatch(ArrayList<DataJournee> listMatch) {
+				this.listMatch = listMatch;
+			}
+
+			/**
+			 * @param listJournee
+			 */
+			public void setListJournee(ArrayList<DataJournee> listJournee) {
+				this.listEquipeSuivie = listJournee;
 			}
 }
 

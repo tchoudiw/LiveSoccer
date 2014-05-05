@@ -37,8 +37,6 @@ public class ScottishLeagueActivity extends Activity{
 	private ArrayList<DataJournee> listJournee ;
 	Intent itent ;
 
-	  // All static variables
-    static final String URL = "http://api.androidhive.info/pizza/?format=xml";
     // XML node keys
     static final String RACINE_TEAM = "Team"; // parent node
     static final String TEAM_ID = "Team_Id";
@@ -104,7 +102,7 @@ public class ScottishLeagueActivity extends Activity{
 			//setContentView(R.layout.main_league_onglet);
 			mainAdapter = new  ScottishEquipeAdapteur(listEquipe, getApplicationContext());
 			mainAdapterc = new ScotishClassementAdapteur(listClassement, getApplicationContext());
-			mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext()) ;
+			mainAdapterj = new JourneeAdaptateur(listJournee, getApplicationContext(), false) ;
 			
 			mainList1.setAdapter(mainAdapter);
 			mainList2.setAdapter(mainAdapterc);

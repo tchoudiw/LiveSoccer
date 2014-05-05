@@ -5,6 +5,7 @@ package choixMatch;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.example.livesoccer.R;
@@ -164,9 +165,50 @@ public class DataJournee {
 		return journee ;
 	}
 	
+	/**
+	 * Historique Journee d'une équipe donnée 
+	 * @return journee URL 
+	 */
+	public String getHistoriqueUrl(){
+		
+		final String journee = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndLeague?&" +
+				"league=Scottish&ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&" +
+				"startDateString="+dateDebut + "&endDateString=" + getTodayDate() ;
+		
+		return journee ;
+	}
+		
+	/**
+	 * Avenir Journee d'une équipe donnée 
+	 * @return journee URL 
+	 */
+	public String getAvenirUrl(){
+		
+		final String journee = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndLeague?&" +
+				"league=Scottish&ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&" +
+				"startDateString="+incrementDate(new Date()) + "&endDateString=" + dateFin ;
+		
+		return journee ;
+	}
 	
-//http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndTeam?ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&startDateString=2012-01-01&endDateString=2015-01-01&teamId=50
+	/**
+	 * Actuelle Journee d'une équipe donnée 
+	 * @return journee URL 
+	 */
+	public String getActuelleUrl(){
+		
+		final String journee = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndLeague?&" +
+				"league=Scottish&ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR&" +
+				"startDateString="+getTodayDate() + "&endDateString=" + incrementDate(new Date());
+		
+		return journee ;
+	}	
 
+/**
+ * URL de toutes les journées 
+ * @param idEquipe
+ * @return
+ */
 public String getTeamJourneeUrl(String idEquipe){
 	 final String  journeeEquipe = "http://www.xmlsoccer.com/FootballDataDemo.asmx/GetFixturesByDateIntervalAndTeam?" +
 	 		"ApiKey=JDEJMCUNYSKUWXJTSDVLCGMEHDGPUVNURWFNRLILWEDEGUPQKR" +
@@ -198,7 +240,24 @@ public String getTeamJourneeUrl(String idEquipe){
 	public void setIdMatch(String idMatch) {
 		this.idMatch = idMatch;
 	}
-
+	
+	/**
+	 * @return today date 
+	 */
+	public static  String getTodayDate(){
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		return simple.format(date).toString() ;
+	}
+	
+	public static String incrementDate(Date date){
+		Calendar calendrier = Calendar.getInstance();
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd");
+		calendrier.setTime(date);
+		calendrier.add(Calendar.DATE, 1);
+		Date dateInc = calendrier.getTime();
+		return simple.format(dateInc).toString() ;
+	}
 
 
 	/**
@@ -255,7 +314,7 @@ public String getTeamJourneeUrl(String idEquipe){
 	private String numJournee ;
 	
 	
-	private final String dateDebut="2012-01-01";
+	private final String dateDebut="2013-09-01";
 	private final String dateFin = "2015-01-01";
 	
 	public  boolean buttonState = false ;

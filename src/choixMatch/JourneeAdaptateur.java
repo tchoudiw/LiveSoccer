@@ -45,17 +45,22 @@ public class JourneeAdaptateur extends BaseAdapter {
 	private boolean[] checkBoxState1;
 
 	private boolean[] checkBoxState2;
+	private boolean modePari = false ;
+
+	private String[] mesEquipe ={"",""};
 
 	/**
 	 * @param context
-	 *            TODO
+	 *            TOD;O
+	 * @param modePari TODO
 	 * @param listMatch
 	 */
-	public JourneeAdaptateur(ArrayList<DataJournee> listmatch, Context context) {
+	public JourneeAdaptateur(ArrayList<DataJournee> listmatch, Context context, boolean modePari) {
 		this.listMatch = listmatch;
 		this.context = context;
 		checkBoxState1=new boolean[listmatch.size()] ;
 		checkBoxState2=new boolean[listmatch.size()] ;
+		this.modePari = modePari ;
 		// buttonState = new boolean[listmatch.size()];
 		
 	}
@@ -242,6 +247,60 @@ public class JourneeAdaptateur extends BaseAdapter {
 			view.findViewById(R.id.suivrej).setVisibility(View.INVISIBLE);
 		}
 		
+		if(modePari){
+			ImageView pari1 = (ImageView) view.findViewById(R.id.pari1);
+			view.findViewById(R.id.checkj1).setVisibility(View.GONE);
+			view.findViewById(R.id.checkj2).setVisibility(View.GONE);
+			view.findViewById(R.id.suivrej).setVisibility(View.INVISIBLE);
+			view.findViewById(R.id.pari1).setVisibility(View.VISIBLE);
+			//view.findViewById(R.id.pari2).setVisibility(View.VISIBLE);
+			
+			//ImageView pari2 = (ImageView) view.findViewById(R.id.pari2);
+			mesEquipe[0] = dataJournee.getEquipe2() ; 
+			mesEquipe[1] = ""; 
+			int score1 = Integer.parseInt(dataJournee.getScore1()) ;   
+			int score2 = Integer.parseInt(dataJournee.getScore2()) ; 
+			if(mesEquipe[0].equals(dataJournee.getEquipe1()) || mesEquipe[1].equals(dataJournee.getEquipe1())  ){
+				if(score1 <= score2 ){
+					pari1.setImageResource(R.drawable.perdu) ;
+					//pari2.setImageResource(R.drawable.gagne) ;
+				}
+				else{
+					pari1.setImageResource(R.drawable.gagne) ;
+					//pari2.setImageResource(R.drawable.perdu) ;		
+				}
+			}
+			
+			if(mesEquipe[0].equals(dataJournee.getEquipe2()) || mesEquipe[1].equals(dataJournee.getEquipe2())  ){
+				if(score2 <= score1 ){
+					pari1.setImageResource(R.drawable.perdu) ;
+					//pari2.setImageResource(R.drawable.gagne) ;
+				}
+				else{
+					pari1.setImageResource(R.drawable.gagne) ;
+					//pari2.setImageResource(R.drawable.perdu) ;
+						
+				}
+			}
+			
+			if(mesEquipe[0].equals(dataJournee.getEquipe2()) && mesEquipe[1].equals(dataJournee.getEquipe2())  ){
+				if(score2 == score1 ){
+					pari1.setImageResource(R.drawable.gagne) ;
+					//pari2.setImageResource(R.drawable.gagne) ;
+				}
+				else{
+					pari1.setImageResource(R.drawable.perdu) ;
+					//pari2.setImageResource(R.drawable.perdu) ;
+						
+				}
+			}
+			
+			
+		}
+		
+		
+		
+		
 		// rendre le check box sélectionable sur le listview
 		check1.setTag(position);
 		check1.setOnClickListener(new View.OnClickListener() {
@@ -359,9 +418,6 @@ public class JourneeAdaptateur extends BaseAdapter {
 				int pos=(Integer)view.getTag();
 				DataJournee dataJournee = listMatch.get(pos);
 
-//				Toast.makeText(parent.getContext(),
-//						"doit ouvrir la page : " + dataJournee.getNumJournee(),
-//						Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(context,MatchActivity.class);
 				i.putExtra("id_match", dataJournee.getIdMatch());
 				i.putExtra("equipe1", dataJournee.getEquipe1());

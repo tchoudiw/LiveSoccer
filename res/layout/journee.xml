@@ -51,6 +51,13 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content" 
 			        android:onClick="onCheckboxClicked" />
+		         <ImageView
+		              android:id="@+id/pari1"
+		              android:layout_width="20dp"
+		              android:layout_height="20dp"
+		              android:src="@drawable/perdu"
+		              android:layout_marginTop="12dip"
+		              android:visibility="gone" />
 		
 		    </LinearLayout>
 		
@@ -91,6 +98,13 @@
 			        android:layout_height="wrap_content" 
 			        android:onClick="onCheckboxClicked" 
 			       />
+		          <ImageView
+		              android:id="@+id/pari2"
+		              android:layout_width="20dp"
+		              android:layout_height="20dp"
+		              android:src="@drawable/gagne"
+		              android:layout_marginTop="12dip"
+		              android:visibility="gone" />
 		         
 		    </LinearLayout>
 		    
